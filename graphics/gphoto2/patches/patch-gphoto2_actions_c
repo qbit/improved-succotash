@@ -1,0 +1,23 @@
+Index: gphoto2/actions.c
+--- gphoto2/actions.c.orig
++++ gphoto2/actions.c
+@@ -19,7 +19,8 @@
+  * Boston, MA  02110-1301  USA
+  */
+ 
+-#define _XOPEN_SOURCE	/* strptime proto, but this hides other prototypes */
++/* strptime is XPG4v2 */
++#define _XOPEN_SOURCE_EXTENDED 1	/* strptime proto, but this hides other prototypes */
+ #define _GNU_SOURCE	/* get all the other prototypes */
+ #define __EXTENSIONS__	/* for solaris to get back strdup and strcasecmp */
+ #define _DARWIN_C_SOURCE
+@@ -41,6 +42,9 @@
+ #ifdef HAVE_SYS_TIME_H
+ # include <sys/time.h>
+ #endif
++
++/* basename(3) */
++#include <libgen.h>
+ 
+ #include "actions.h"
+ #include "i18n.h"

@@ -1,0 +1,8 @@
+@conflict py3-sip-<5.5.0v0
+lib/python${MODPY_VERSION}/site-packages/PyQt5/
+@so lib/python${MODPY_VERSION}/site-packages/PyQt5/sip.${MODPY_PYC_MAGIC_TAG}so
+lib/python${MODPY_VERSION}/site-packages/PyQt5_sip-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/PyQt5_sip-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/PyQt5_sip-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/PyQt5_sip-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/PyQt5_sip-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt

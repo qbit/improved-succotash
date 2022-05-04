@@ -1,0 +1,7 @@
+@rcscript ${RCDIR}/mapserv
+@bin cgi-bin/mapserv
+@cwd ${LOCALBASE}
+@bin bin/mapserv
+@lib lib/libmapserver.so.${LIBmapserver_VERSION}
+@cwd ${LOCALBASE}/share/doc/pkg-readmes
+${PKGSTEM}

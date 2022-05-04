@@ -1,0 +1,4 @@
+L = de
+REVISION =	0
+
+.include <bsd.port.mk>

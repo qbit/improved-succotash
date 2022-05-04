@@ -1,0 +1,7 @@
+@bin bin/uchardet
+include/uchardet/
+include/uchardet/uchardet.h
+@static-lib lib/libuchardet.a
+@lib lib/libuchardet.so.${LIBuchardet_VERSION}
+lib/pkgconfig/uchardet.pc
+@man man/man1/uchardet.1

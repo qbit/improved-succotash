@@ -1,0 +1,12 @@
+Index: coregrind/m_ume/elf.c
+--- coregrind/m_ume/elf.c.orig
++++ coregrind/m_ume/elf.c
+@@ -54,7 +54,7 @@
+ #if !defined(VGO_openbsd)
+ #include <elf.h>
+ #else
+-#include <libelf/gelf.h>
++#include <gelf.h>
+ #endif
+ /* --- !!! --- EXTERNAL HEADERS end --- !!! --- */
+ 

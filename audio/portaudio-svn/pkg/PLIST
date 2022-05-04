@@ -1,0 +1,5 @@
+include/portaudio.h
+@static-lib lib/libportaudio.a
+lib/libportaudio.la
+@lib lib/libportaudio.so.${LIBportaudio_VERSION}
+lib/pkgconfig/portaudio-2.0.pc

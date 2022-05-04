@@ -1,0 +1,21 @@
+Index: meson/mesonbuild/compilers/cpp.py
+--- meson/mesonbuild/compilers/cpp.py.orig
++++ meson/mesonbuild/compilers/cpp.py
+@@ -247,7 +247,7 @@ class ClangCPPCompiler(ClangCompiler, CPPCompiler):
+         return []
+ 
+     def language_stdlib_only_link_flags(self) -> T.List[str]:
+-        return ['-lstdc++']
++        return ['-lc++']
+ 
+ 
+ class AppleClangCPPCompiler(ClangCPPCompiler):
+@@ -397,7 +397,7 @@ class GnuCPPCompiler(GnuCompiler, CPPCompiler):
+         return ['-fpch-preprocess', '-include', os.path.basename(header)]
+ 
+     def language_stdlib_only_link_flags(self) -> T.List[str]:
+-        return ['-lstdc++']
++        return ['-lestdc++']
+ 
+ 
+ class PGICPPCompiler(PGICompiler, CPPCompiler):

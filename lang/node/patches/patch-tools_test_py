@@ -1,0 +1,14 @@
+--- tools/test.py.orig	Sat Jan  8 14:31:29 2022
++++ tools/test.py	Sat Jan  8 14:32:47 2022
+@@ -925,9 +925,9 @@ class Context(object):
+     if self.vm is not None:
+       return self.vm
+     if arch == 'none':
+-      name = 'out/Debug/node' if mode == 'debug' else 'out/Release/node'
++      name = '${WRKDIST}/out/Debug/node' if mode == 'debug' else '${WRKDIST}/out/Release/node'
+     else:
+-      name = 'out/%s.%s/node' % (arch, mode)
++      name = '${WRKDIST}/out/%s.%s/node' % (arch, mode)
+ 
+     # Currently GYP does not support output_dir for MSVS.
+     # http://code.google.com/p/gyp/issues/detail?id=40

@@ -1,0 +1,30 @@
+Index: mkspecs/features/functions.prf
+--- mkspecs/features/functions.prf.orig
++++ mkspecs/features/functions.prf
+@@ -84,6 +84,10 @@ defineReplace(gnWebEngineArgs) {
+         include($$QTWEBENGINE_ROOT/src/buildtools/config/windows.pri)
+         include($$QTWEBENGINE_ROOT/src/core/config/windows.pri)
+     }
++    openbsd: {
++        include($$QTWEBENGINE_ROOT/src/buildtools/config/openbsd.pri)
++        include($$QTWEBENGINE_ROOT/src/core/config/openbsd.pri)
++    }
+     isEmpty(gn_args): error(No gn_args found please make sure you have valid configuration.)
+     return($$gn_args)
+ }
+@@ -93,6 +97,7 @@ defineReplace(gnPdfArgs) {
+     macos: include($$QTWEBENGINE_ROOT/src/buildtools/config/mac_osx.pri)
+     ios: include($$QTWEBENGINE_ROOT/src/pdf/config/ios.pri)
+     win32: include($$QTWEBENGINE_ROOT/src/buildtools/config/windows.pri)
++    openbsd: include($$QTWEBENGINE_ROOT/src/buildtools/config/openbsd.pri)
+     include($$QTWEBENGINE_ROOT/src/pdf/config/common.pri)
+     isEmpty(gn_args): error(No gn_args found please make sure you have valid configuration.)
+     return($$gn_args)
+@@ -113,6 +118,7 @@ defineReplace(gnOS) {
+     macos: return(mac)
+     win32: return(win)
+     linux: return(linux)
++    openbsd: return(openbsd)
+     error(Unsupported platform)
+     return(unknown)
+ }

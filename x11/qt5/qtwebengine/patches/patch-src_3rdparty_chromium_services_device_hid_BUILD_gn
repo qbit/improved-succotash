@@ -1,0 +1,23 @@
+Index: src/3rdparty/chromium/services/device/hid/BUILD.gn
+--- src/3rdparty/chromium/services/device/hid/BUILD.gn.orig
++++ src/3rdparty/chromium/services/device/hid/BUILD.gn
+@@ -41,6 +41,19 @@ source_set("hid") {
+     "//services/device/public/mojom",
+   ]
+ 
++  if (is_openbsd) {
++    sources -= [
++      "hid_connection_linux.cc",
++      "hid_connection_linux.h",
++    ]
++    sources += [
++      "hid_connection_fido.cc",
++      "hid_connection_fido.h",
++      "hid_service_fido.cc",
++      "hid_service_fido.h",
++    ]
++    libs = ["fido2", "cbor", "usbhid", "crypto", "util"]
++  }
+   if (is_linux && use_udev) {
+     sources += [
+       "hid_service_linux.cc",

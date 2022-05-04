@@ -1,0 +1,14 @@
+Remove bash-ism.
+
+Index: tests/testrun.sh
+--- tests/testrun.sh.orig
++++ tests/testrun.sh
+@@ -390,7 +390,7 @@ execEncTest() {
+ rm -rf $tmpfile $tmpfile.2 tmpfile.3
+ 
+ # run tests
+-source "$testfile"
++. "$testfile"
+ 
+ # cleanup
+ rm -rf $tmpfile $tmpfile.2 tmpfile.3

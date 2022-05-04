@@ -1,0 +1,3 @@
+include/zmusic.h
+@lib lib/libzmusic.so.${LIBzmusic_VERSION}
+@lib lib/libzmusiclite.so.${LIBzmusiclite_VERSION}

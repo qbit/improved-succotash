@@ -1,0 +1,14 @@
+@newgroup _murmurd:854
+@newuser _murmurd:854:_murmurd:daemon:Mumble server:/nonexistent:/sbin/nologin
+@rcscript ${RCDIR}/murmurd
+@bin bin/mumble-server
+@bin bin/murmurd
+@man man/man1/murmur-user-wrapper.1
+@man man/man1/murmurd.1
+share/examples/murmur/
+share/examples/murmur/murmur.ini
+@sample ${SYSCONFDIR}/murmur.ini
+@owner _murmurd
+@group _murmurd
+@sample ${LOCALSTATEDIR}/murmur/
+@extraunexec rm -rf ${LOCALSTATEDIR}/murmur/*

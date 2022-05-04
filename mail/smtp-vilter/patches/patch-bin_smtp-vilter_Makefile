@@ -1,0 +1,12 @@
+Index: bin/smtp-vilter/Makefile
+--- bin/smtp-vilter/Makefile.orig
++++ bin/smtp-vilter/Makefile
+@@ -12,7 +12,7 @@ YFLAGS=		-d -p vilter
+ LFLAGS=		-Pvilter -olex.yy.c
+ LINTFLAGS+=	-u
+ 
+-CLEANFILES+=	y.tab.h rt-dynamic
++CLEANFILES+=	rt-dynamic
+ 
+ MAN=		smtp-vilter.8 smtp-vilter.conf.5
+ MANDIR= 	/usr/local/man/cat

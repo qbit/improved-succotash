@@ -1,0 +1,3 @@
+electron/swiftshader/
+@so electron/swiftshader/libEGL.so
+@so electron/swiftshader/libGLESv2.so

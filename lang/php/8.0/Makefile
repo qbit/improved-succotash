@@ -1,0 +1,9 @@
+PORTROACH=	limit:^8\.0
+PHP_VERSION=	8.0.18
+PHP_PKGSPEC=	>=8.0,<8.1
+
+DEFAULT_PHP=	Yes
+
+DEBUG_PACKAGES=		${BUILD_PACKAGES}
+
+.include <bsd.port.mk>

@@ -1,0 +1,14 @@
+Avoid printf("%s", NULL);
+
+Index: source4/dsdb/samdb/ldb_modules/acl.c
+--- source4/dsdb/samdb/ldb_modules/acl.c.orig
++++ source4/dsdb/samdb/ldb_modules/acl.c
+@@ -646,7 +646,7 @@ fail:
+ 		      "nbname[%s] ntds[%s] forest[%s] domain[%s]\n",
+ 		      spn_value, (unsigned)userAccountControl,
+ 		      samAccountName, dnsHostName,
+-		      netbios_name, ntds_guid,
++		      netbios_name, ntds_guid ? ntds_guid : "(NULL)",
+ 		      forest_name, base_domain);
+ 	return LDB_ERR_CONSTRAINT_VIOLATION;
+ 

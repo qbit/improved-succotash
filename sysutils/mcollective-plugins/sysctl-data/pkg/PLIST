@@ -1,0 +1,4 @@
+libexec/mcollective/mcollective/
+libexec/mcollective/mcollective/data/
+libexec/mcollective/mcollective/data/sysctl_data.ddl
+libexec/mcollective/mcollective/data/sysctl_data.rb

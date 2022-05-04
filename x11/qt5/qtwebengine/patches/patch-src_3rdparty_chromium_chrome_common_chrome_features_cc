@@ -1,0 +1,12 @@
+Index: src/3rdparty/chromium/chrome/common/chrome_features.cc
+--- src/3rdparty/chromium/chrome/common/chrome_features.cc.orig
++++ src/3rdparty/chromium/chrome/common/chrome_features.cc
+@@ -66,7 +66,7 @@ const base::Feature kAsyncDns {
+ #endif
+ };
+ 
+-#if defined(OS_WIN) || defined(OS_LINUX)
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
+ // Enables the Restart background mode optimization. When all Chrome UI is
+ // closed and it goes in the background, allows to restart the browser to
+ // discard memory.

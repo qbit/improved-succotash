@@ -1,0 +1,30 @@
+Index: doc/CMakeLists.txt
+--- doc/CMakeLists.txt.orig
++++ doc/CMakeLists.txt
+@@ -73,16 +73,16 @@ if(ENABLE_MAN OR ENABLE_DOC)
+     add_custom_target(rn DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ReleaseNotes.html)
+ 
+     # man/doc in all languages
+-    add_subdirectory(cs)
+-    add_subdirectory(de)
+-    add_subdirectory(en)
+-    add_subdirectory(es)
+-    add_subdirectory(fr)
+-    add_subdirectory(it)
+-    add_subdirectory(ja)
+-    add_subdirectory(pl)
+-    add_subdirectory(ru)
+-    add_subdirectory(sr)
++    #add_subdirectory(cs)
++    #add_subdirectory(de)
++    #add_subdirectory(en)
++    #add_subdirectory(es)
++    #add_subdirectory(fr)
++    #add_subdirectory(it)
++    #add_subdirectory(ja)
++    #add_subdirectory(pl)
++    #add_subdirectory(ru)
++    #add_subdirectory(sr)
+   else()
+     message(SEND_ERROR "Asciidoctor not found")
+   endif()

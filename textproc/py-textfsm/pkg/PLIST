@@ -1,0 +1,35 @@
+@conflict py-textfsm-*
+@pkgpath textproc/py-textfsm
+bin/textfsm
+lib/python${MODPY_VERSION}/site-packages/testdata/
+lib/python${MODPY_VERSION}/site-packages/testdata/clitable_templateA
+lib/python${MODPY_VERSION}/site-packages/testdata/clitable_templateB
+lib/python${MODPY_VERSION}/site-packages/testdata/clitable_templateC
+lib/python${MODPY_VERSION}/site-packages/testdata/clitable_templateD
+lib/python${MODPY_VERSION}/site-packages/testdata/default_index
+lib/python${MODPY_VERSION}/site-packages/testdata/nondefault_index
+lib/python${MODPY_VERSION}/site-packages/testdata/parseindex_index
+lib/python${MODPY_VERSION}/site-packages/testdata/parseindexfail1_index
+lib/python${MODPY_VERSION}/site-packages/testdata/parseindexfail2_index
+lib/python${MODPY_VERSION}/site-packages/testdata/parseindexfail3_index
+lib/python${MODPY_VERSION}/site-packages/textfsm/
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/entry_points.txt
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/requires.txt
+lib/python${MODPY_VERSION}/site-packages/textfsm-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+lib/python${MODPY_VERSION}/site-packages/textfsm/__init__.py
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}clitable.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}copyable_regex_object.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}parser.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}terminal.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/${MODPY_PYCACHE}texttable.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/textfsm/clitable.py
+lib/python${MODPY_VERSION}/site-packages/textfsm/copyable_regex_object.py
+lib/python${MODPY_VERSION}/site-packages/textfsm/parser.py
+lib/python${MODPY_VERSION}/site-packages/textfsm/terminal.py
+lib/python${MODPY_VERSION}/site-packages/textfsm/texttable.py

@@ -1,0 +1,23 @@
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -45,7 +45,7 @@ else()
+ endif()
+ 
+ # OpenCV classes
+-find_package(OpenCV)
++#find_package(OpenCV)
+ if(OpenCV_FOUND)
+     list(APPEND LIBZXING_FILES
+         opencv/src/zxing/MatSource.cpp
+@@ -57,8 +57,8 @@ if(OpenCV_FOUND)
+ endif()
+ 
+ include_directories(core/src)
+-add_library(libzxing ${LIBZXING_FILES})
+-set_target_properties(libzxing PROPERTIES PREFIX "")
++add_library(libzxing SHARED ${LIBZXING_FILES})
++set_target_properties(libzxing PROPERTIES PREFIX "" VERSION ${LIBzxing_VERSION})
+ 
+ find_package(Iconv)
+ if(ICONV_FOUND)

@@ -1,0 +1,3 @@
+@bin bin/UEFIPatch
+@bin bin/UEFIReplace
+@bin bin/UEFITool

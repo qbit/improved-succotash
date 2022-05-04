@@ -1,0 +1,23 @@
+Index: makefile
+--- makefile.orig
++++ makefile
+@@ -1,15 +1,12 @@
+ #--------------------------------
+ # jhead makefile for Unix
+ #--------------------------------
+-OBJ=obj
++OBJ=.
+ SRC=.
+-CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+-LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
++CFLAGS:=$(CFLAGS) -Wall
++LDFLAGS:=$(LDFLAGS)
+ 
+-all: objdir jhead
+-
+-objdir:
+-	@mkdir -p obj
++all: jhead
+ 
+ objs = $(OBJ)/jhead.o $(OBJ)/jpgfile.o $(OBJ)/jpgqguess.o $(OBJ)/paths.o \
+ 	$(OBJ)/exif.o $(OBJ)/iptc.o $(OBJ)/gpsinfo.o $(OBJ)/makernote.o 

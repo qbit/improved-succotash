@@ -1,0 +1,53 @@
+COMMENT =		Tcl bindings for SQLite3
+
+V =			3.34.0
+VER =			${V:S/.//g}
+
+DISTNAME =		sqlite-autoconf-${VER:C/.$/0\0/}00
+PKGNAME =		sqlite3-tcl-${V}
+CATEGORIES =		databases
+HOMEPAGE =		http://www.sqlite.org/
+MAINTAINER =		Stuart Cassoff <stwo@users.sourceforge.net>
+
+# PD
+PERMIT_PACKAGE =	Yes
+
+WANTLIB =		pthread
+
+MASTER_SITES =		${HOMEPAGE}2020/
+
+MODULES =		lang/tcl
+BUILD_DEPENDS =		${MODTCL_BUILD_DEPENDS}
+RUN_DEPENDS =		${MODTCL_RUN_DEPENDS}
+
+# Build against Tcl 8.5 so this Tcl extension
+# can work with Tcl 8.5 and Tcl 8.6.
+MODTCL_VERSION =	8.5
+
+FAKE_FLAGS =		PKG_DIR=sqlite3
+SEPARATE_BUILD =	Yes
+CONFIGURE_STYLE =	gnu
+
+CONFIGURE_ARGS =	--with-tcl=${MODTCL_LIBDIR} \
+			--libdir=${MODTCL_TCLDIR}
+
+NO_TEST =		Yes
+
+CFLAGS +=		-DSQLITE_ENABLE_COLUMN_METADATA=1 \
+			-DSQLITE_ENABLE_DBSTAT_VTAB=1 \
+			-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1 \
+			-DSQLITE_ENABLE_FTS3_PARENTHESIS=1 \
+			-DSQLITE_ENABLE_FTS5=1 \
+			-DSQLITE_ENABLE_JSON1=1 \
+			-DSQLITE_ENABLE_PREUPDATE_HOOK=1 \
+			-DSQLITE_ENABLE_RTREE=1 \
+			-DSQLITE_ENABLE_SESSION=1 \
+			-DSQLITE_ENABLE_UNLOCK_NOTIFY=1 \
+			-DSQLITE_HAVE_ISNAN=1 \
+			-DSQLITE_LIKE_DOESNT_MATCH_BLOBS=1 \
+			-DSQLITE_SOUNDEX=1
+
+WRKSRC =		${WRKDIST}/tea
+SUBST_VARS =		VER
+
+.include <bsd.port.mk>

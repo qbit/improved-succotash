@@ -1,0 +1,74 @@
+Index: src/3rdparty/chromium/services/resource_coordinator/public/cpp/memory_instrumentation/os_metrics_linux.cc
+--- src/3rdparty/chromium/services/resource_coordinator/public/cpp/memory_instrumentation/os_metrics_linux.cc.orig
++++ src/3rdparty/chromium/services/resource_coordinator/public/cpp/memory_instrumentation/os_metrics_linux.cc
+@@ -24,8 +24,10 @@
+ #include "build/build_config.h"
+ #include "services/resource_coordinator/public/cpp/memory_instrumentation/os_metrics.h"
+ 
++#if !defined(OS_BSD)
+ // Symbol with virtual address of the start of ELF header of the current binary.
+ extern char __ehdr_start;
++#endif
+ 
+ namespace memory_instrumentation {
+ 
+@@ -37,6 +39,7 @@ using mojom::VmRegionPtr;
+ const char kClearPeakRssCommand[] = "5";
+ const uint32_t kMaxLineSize = 4096;
+ 
++#if !defined(OS_BSD)
+ // TODO(chiniforooshan): Many of the utility functions in this anonymous
+ // namespace should move to base/process/process_metrics_linux.cc to make the
+ // code a lot cleaner.  However, we should do so after we made sure the metrics
+@@ -226,6 +229,7 @@ uint32_t ReadLinuxProcSmapsFile(FILE* smaps_file,
+   }
+   return num_valid_regions;
+ }
++#endif
+ 
+ }  // namespace
+ 
+@@ -239,6 +243,9 @@ void OSMetrics::SetProcSmapsForTesting(FILE* f) {
+ // static
+ bool OSMetrics::FillOSMemoryDump(base::ProcessId pid,
+                                  mojom::RawOSMemDump* dump) {
++#if defined(OS_BSD)
++  return false;
++#else
+   // TODO(chiniforooshan): There is no need to read both /statm and /status
+   // files. Refactor to get everything from /status using ProcessMetric.
+   auto statm_file = GetProcPidDir(pid).Append("statm");
+@@ -291,10 +298,12 @@ bool OSMetrics::FillOSMemoryDump(base::ProcessId pid,
+ #endif  //  defined(OS_ANDROID)
+ 
+   return true;
++#endif
+ }
+ 
+ // static
+ std::vector<VmRegionPtr> OSMetrics::GetProcessMemoryMaps(base::ProcessId pid) {
++#if !defined(OS_BSD)
+   std::vector<VmRegionPtr> maps;
+   uint32_t res = 0;
+   if (g_proc_smaps_for_testing) {
+@@ -312,8 +321,13 @@ std::vector<VmRegionPtr> OSMetrics::GetProcessMemoryMa
+     return std::vector<VmRegionPtr>();
+ 
+   return maps;
++#else
++    NOTIMPLEMENTED();
++    return std::vector<VmRegionPtr>();
++#endif
+ }
+ 
++#if !defined(OS_BSD) 
+ // static
+ OSMetrics::MappedAndResidentPagesDumpState OSMetrics::GetMappedAndResidentPages(
+     const size_t start_address,
+@@ -395,5 +409,6 @@ size_t OSMetrics::GetPeakResidentSetSize(base::Process
+   }
+   return 0;
+ }
++#endif
+ 
+ }  // namespace memory_instrumentation

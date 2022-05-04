@@ -1,0 +1,16 @@
+#!/bin/ksh
+
+daemon="${TRUEPREFIX}/sbin/adsuck"
+daemon_flags="-c /var/adsuck -f /files/resolv.conf -r /files/regex /files/hosts.small"
+
+. /etc/rc.d/rc.subr
+
+rc_reload() {
+	pkill -HUP -xf "${pexp}" && pkill -USR1 -xf "${pexp}"
+}
+
+rc_post() {
+	pkill -xf "adsuck: \[resolv monitor\]"
+}
+
+rc_cmd $1

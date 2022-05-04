@@ -1,0 +1,23 @@
+From d2262267537fbe301e218901656b582f021bf67f Mon Sep 17 00:00:00 2001
+From: Andrew Bauer <knnniggett@hotmail.com>
+Date: Wed, 12 Dec 2018 10:19:29 -0600
+Subject: [PATCH] make afpstats python 3 compatible
+
+Index: contrib/shell_utils/afpstats
+--- contrib/shell_utils/afpstats.orig
++++ contrib/shell_utils/afpstats
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/local/bin/python3.9
+ 
+ usage = """Usage:
+ python afpstats.py
+@@ -23,7 +23,7 @@ def main():
+ 
+     reply = iface.GetUsers()
+     for name in reply:
+-        print name
++        print(name)
+ 
+ if __name__ == '__main__':
+     main()

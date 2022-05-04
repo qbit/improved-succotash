@@ -1,0 +1,15 @@
+@pkgpath net/py-zeroconf
+lib/python${MODPY_VERSION}/site-packages/zeroconf/
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/not-zip-safe
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/requires.txt
+lib/python${MODPY_VERSION}/site-packages/zeroconf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+lib/python${MODPY_VERSION}/site-packages/zeroconf/__init__.py
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/zeroconf/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/zeroconf/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/zeroconf/${MODPY_PYCACHE}test.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/zeroconf/py.typed
+lib/python${MODPY_VERSION}/site-packages/zeroconf/test.py

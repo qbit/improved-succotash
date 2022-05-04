@@ -1,0 +1,30 @@
+Index: setup.py
+--- setup.py.orig
++++ setup.py
+@@ -71,7 +71,7 @@ class my_build_i18n(setuptools.Command):
+     ]
+ 
+     def initialize_options(self):
+-        self.merge_po = False
++        self.merge_po = True
+     def finalize_options(self):
+         pass
+ 
+@@ -182,7 +182,7 @@ from %(pkgname)s import %(filename)s
+             open(newpath, "wb").write(out)
+ 
+             self.distribution.data_files.append(
+-                ('share/man/man1', (newpath,)))
++                ('man/man1', (newpath,)))
+ 
+     def _build_icons(self):
+         for size in glob.glob(os.path.join("data/icons", "*")):
+@@ -504,7 +504,7 @@ setuptools.setup(
+          ["data/org.virt-manager.virt-manager.gschema.xml"]),
+         ("share/virt-manager/ui", glob.glob("ui/*.ui")),
+ 
+-        ("share/man/man1", [
++        ("man/man1", [
+             "man/virt-manager.1",
+             "man/virt-install.1",
+             "man/virt-clone.1",

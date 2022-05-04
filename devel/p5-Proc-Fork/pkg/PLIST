@@ -1,0 +1,4 @@
+${P5SITE}/Proc/
+${P5SITE}/Proc/Fork.pm
+${P5SITE}/Proc/boilerplate.pl
+@man man/man3p/Proc::Fork.3p

@@ -1,0 +1,4 @@
+include/orcania-cfg.h
+include/orcania.h
+@lib lib/liborcania.so.${LIBorcania_VERSION}
+lib/pkgconfig/liborcania.pc

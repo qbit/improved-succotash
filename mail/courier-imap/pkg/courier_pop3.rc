@@ -1,0 +1,17 @@
+#!/bin/ksh
+
+daemon="${TRUEPREFIX}/libexec/pop3d.rc"
+
+. /etc/rc.d/rc.subr
+
+pexp="${LOCALBASE}/sbin/courierlogger .* -start -name=pop3d .*"
+
+rc_start() {
+	${rcexec} "${daemon} start"
+}
+
+rc_stop() {
+	${daemon} stop
+}
+
+rc_cmd $1

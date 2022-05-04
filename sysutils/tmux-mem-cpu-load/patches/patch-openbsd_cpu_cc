@@ -1,0 +1,14 @@
+Fix return type of get_cpu_count().
+
+Index: openbsd/cpu.cc
+--- openbsd/cpu.cc.orig
++++ openbsd/cpu.cc
+@@ -24,7 +24,7 @@
+ #include "error.h"
+ #include "cpu.h"
+ 
+-uint8_t get_cpu_count()
++uint32_t get_cpu_count()
+ {
+   int cpu_count = 1; // default to 1
+   int mib[2] = { CTL_HW, HW_NCPUONLINE };

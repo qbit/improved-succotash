@@ -1,0 +1,16 @@
+#!/bin/ksh
+
+daemon="${TRUEPREFIX}/sbin/thttpd"
+
+. /etc/rc.d/rc.subr
+
+rc_stop_signal=USR1
+
+# The /var/www root directory will be overridden by any -d flag the user
+# supplies. This addresses the awkward fact that thttpd defaults to the
+# current working directory.
+rc_start() {
+	${rcexec} "cd /var/www; ${daemon} ${daemon_flags}"
+}
+
+rc_cmd $1

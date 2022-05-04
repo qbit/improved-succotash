@@ -1,0 +1,13 @@
+remove hardcoded optimization flag
+
+Index: Quake/Makefile
+--- Quake/Makefile.orig
++++ Quake/Makefile
+@@ -56,7 +56,6 @@ CFLAGS += -g
+ do_strip=
+ else
+ DFLAGS += -DNDEBUG
+-CFLAGS += -O3
+ CFLAGS += $(call check_gcc,-fweb,)
+ CFLAGS += $(call check_gcc,-frename-registers,)
+ cmd_strip=$(STRIP) $(1)

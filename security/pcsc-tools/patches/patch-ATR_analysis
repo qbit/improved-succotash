@@ -1,0 +1,18 @@
+--- ATR_analysis.orig	Sat Jul  2 17:24:38 2016
++++ ATR_analysis	Sat Jul 30 22:12:56 2016
+@@ -241,14 +241,7 @@ sub update_smartcard_list($$)
+ 	{
+ 		print "Updating $file using $url\n";
+ 
+-		if ($^O =~ "darwin")
+-		{
+-			system("curl $url --output $file");
+-		}
+-		else
+-		{
+-			system("wget --quiet $url --output-document=$file ; touch $file");
+-		}
++		system("ftp -o $file $url");
+ 
+ 		# did an update
+ 		return 1;

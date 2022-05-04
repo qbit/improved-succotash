@@ -1,0 +1,12 @@
+Index: configure
+--- configure.orig
++++ configure
+@@ -12882,7 +12882,7 @@ else
+ fi
+ 
+ 		;;
+-	darwin*|netbsd*|kfreebsd*-gnu)
++	darwin*|netbsd*|kfreebsd*-gnu|openbsd*)
+ 		with_fuse="external"
+ 		;;
+ 	freebsd*)

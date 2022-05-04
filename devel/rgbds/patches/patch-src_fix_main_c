@@ -1,0 +1,22 @@
+Index: src/fix/main.c
+--- src/fix/main.c.orig
++++ src/fix/main.c
+@@ -49,6 +49,8 @@ static struct option const longopts[] = {
+ 	{ NULL,               no_argument,       NULL, 0   }
+ };
+ 
++int pledge(const char *, const char *);
++
+ static void print_usage(void)
+ {
+ 	fputs(
+@@ -107,6 +109,9 @@ int main(int argc, char *argv[])
+ 	int ramsize = 0;   /* RAM size ID */
+ 	int version = 0;   /* mask ROM version number */
+ 	int padvalue = 0;  /* to pad the rom with if it changes size */
++
++	if (pledge("stdio rpath wpath cpath", NULL) == -1)
++		errx(1, "pledge");
+ 
+ 	while ((ch = musl_getopt_long_only(argc, argv, optstring, longopts,
+ 					   NULL)) != -1) {

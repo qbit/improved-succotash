@@ -1,0 +1,13 @@
+include/libwebsockets.h
+include/lws-plugin-ssh.h
+include/lws_config.h
+lib/cmake/
+lib/cmake/libwebsockets/
+lib/cmake/libwebsockets/LibwebsocketsConfig.cmake
+lib/cmake/libwebsockets/LibwebsocketsConfigVersion.cmake
+lib/cmake/libwebsockets/LibwebsocketsTargets${MODCMAKE_BUILD_SUFFIX}
+lib/cmake/libwebsockets/LibwebsocketsTargets.cmake
+lib/libwebsockets.a
+@lib lib/libwebsockets.so.${LIBwebsockets_VERSION}
+lib/pkgconfig/libwebsockets.pc
+lib/pkgconfig/libwebsockets_static.pc

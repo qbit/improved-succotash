@@ -1,0 +1,11 @@
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -199,6 +199,7 @@ endif
+ endif
+ 
+ LIBS      += -lrem -lm
++LIBS      += -pthread
+ #LIBS      += -L$(SYSROOT)/lib
+ 
+ ifeq ($(OS),win32)

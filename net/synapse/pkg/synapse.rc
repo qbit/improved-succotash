@@ -1,0 +1,19 @@
+#!/bin/ksh
+
+daemon="${PREFIX}/share/synapse/synctl"
+daemon_user="_synapse"
+daemon_flags="${LOCALSTATEDIR}/synapse/homeserver.yaml"
+
+. /etc/rc.d/rc.subr
+
+pexp="${MODPY_BIN} -m synapse.app.homeserver -c ${daemon_flags} --daemonize"
+
+rc_start() {
+	${rcexec} "${daemon} start ${daemon_flags}"
+}
+
+rc_stop() {
+	${daemon} stop ${daemon_flags}
+}
+
+rc_cmd $1

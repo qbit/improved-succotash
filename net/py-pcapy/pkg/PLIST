@@ -1,0 +1,13 @@
+lib/python${MODPY_VERSION}/site-packages/pcapy-${MODPY_EGG_VERSION}.dev0-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/pcapy-${MODPY_EGG_VERSION}.dev0-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/pcapy-${MODPY_EGG_VERSION}.dev0-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/pcapy-${MODPY_EGG_VERSION}.dev0-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/pcapy-${MODPY_EGG_VERSION}.dev0-py${MODPY_VERSION}.egg-info/top_level.txt
+@so lib/python${MODPY_VERSION}/site-packages/pcapy.${MODPY_PYC_MAGIC_TAG}so
+share/doc/pcapy/
+share/doc/pcapy/LICENSE
+share/doc/pcapy/README
+share/doc/pcapy/pcapy.html
+@comment share/doc/pcapy/tests/
+@comment share/doc/pcapy/tests/96pings.pcap
+@comment share/doc/pcapy/tests/pcapytests.py

@@ -1,0 +1,12 @@
+Index: icons/meson.build
+--- icons/meson.build.orig
++++ icons/meson.build
+@@ -226,7 +226,7 @@ foreach flavour: icon_flavors
+ 
+       if local_links.length() > 0
+         links_targets = run_command(
+-          'realpath', '-e',
++          'grealpath', '-e',
+           '--relative-to=' + meson.current_source_dir() / icon_dir,
+           local_links,
+           check: true,

@@ -1,0 +1,5 @@
+@bin bin/wordgrinder
+@bin bin/xwordgrinder
+@man man/man1/wordgrinder.1
+share/doc/wordgrinder/
+share/doc/wordgrinder/README.wg

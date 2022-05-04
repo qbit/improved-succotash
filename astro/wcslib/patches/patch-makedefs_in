@@ -1,0 +1,21 @@
+Index: makedefs.in
+--- makedefs.in.orig
++++ makedefs.in
+@@ -101,7 +101,7 @@
+   FFLAGS   := @FFLAGS@
+ 
+ # Static object library.
+-  WCSLIB   := libwcs-$(LIBVER).a
++  WCSLIB   := libwcs.a
+   ARFLAGS  := @ARFLAGS@
+   RANLIB   := @RANLIB@
+ 
+@@ -132,7 +132,7 @@
+ 
+   LIBDIR   := $(DESTDIR)@libdir@
+   BINDIR   := $(DESTDIR)@bindir@
+-  INCDIR   := $(DESTDIR)@includedir@/wcslib-$(LIBVER)
++  INCDIR   := $(DESTDIR)@includedir@/wcslib-@PACKAGE_VERSION@
+   INCLINK  := $(DESTDIR)@includedir@/wcslib
+   DOCDIR   := $(DESTDIR)@docdir@
+   DOCLINK  := $(dir $(DESTDIR)@docdir@)wcslib

@@ -1,0 +1,27 @@
+@conflict prison-<=5.68.0
+@pkgpath graphics/prison
+include/KF5/
+include/KF5/prison/
+include/KF5/prison/AbstractBarcode
+include/KF5/prison/Prison
+include/KF5/prison/abstractbarcode.h
+include/KF5/prison/prison.h
+include/KF5/prison/prison_export.h
+include/KF5/prison/prison_version.h
+lib/cmake/KF5Prison/
+lib/cmake/KF5Prison/KF5PrisonConfig.cmake
+lib/cmake/KF5Prison/KF5PrisonConfigVersion.cmake
+lib/cmake/KF5Prison/KF5PrisonTargets${MODCMAKE_BUILD_SUFFIX}
+lib/cmake/KF5Prison/KF5PrisonTargets.cmake
+@lib lib/libKF5Prison.so.${LIBKF5Prison_VERSION}
+lib/qt5/qml/org/
+lib/qt5/qml/org/kde/
+lib/qt5/qml/org/kde/prison/
+@so lib/qt5/qml/org/kde/prison/libprisonquickplugin.so
+lib/qt5/qml/org/kde/prison/qmldir
+share/kf5/
+share/kf5/mkspecs/
+share/kf5/mkspecs/qt_Prison.pri
+share/qlogging-categories5/
+share/qlogging-categories5/prison.categories
+share/qlogging-categories5/prison.renamecategories

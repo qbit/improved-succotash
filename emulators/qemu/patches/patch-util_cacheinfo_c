@@ -1,0 +1,19 @@
+Set OpenBSD/powerpc cache sizes.
+
+Index: util/cacheinfo.c
+--- util/cacheinfo.c.orig
++++ util/cacheinfo.c
+@@ -146,6 +146,13 @@ static void arch_cache_info(int *isize, int *dsize)
+     }
+ }
+ 
++#elif defined(_ARCH_PPC) && defined (__OpenBSD__)
++static void arch_cache_info(int *isize, int *dsize)
++{
++    *isize = 32;
++    *dsize = 32;
++}
++
+ #else
+ static void arch_cache_info(int *isize, int *dsize) { }
+ #endif /* arch_cache_info */

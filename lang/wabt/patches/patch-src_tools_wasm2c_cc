@@ -1,0 +1,23 @@
+Index: src/tools/wasm2c.cc
+--- src/tools/wasm2c.cc.orig
++++ src/tools/wasm2c.cc
+@@ -19,6 +19,9 @@
+ #include <cstdio>
+ #include <cstdlib>
+ 
++#include <err.h>
++#include <unistd.h>
++
+ #include "src/apply-names.h"
+ #include "src/binary-reader-ir.h"
+ #include "src/binary-reader.h"
+@@ -119,6 +122,9 @@ int ProgramMain(int argc, char** argv) {
+ 
+   InitStdio();
+   ParseOptions(argc, argv);
++
++  if (pledge("stdio rpath wpath cpath", NULL) != 0)
++    err(1, "pledge");
+ 
+   std::vector<uint8_t> file_data;
+   result = ReadFile(s_infile.c_str(), &file_data);

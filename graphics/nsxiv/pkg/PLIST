@@ -1,0 +1,12 @@
+@conflict sxiv-*
+@pkgpath graphics/sxiv
+@bin bin/nsxiv
+bin/sxiv
+@man man/man1/nsxiv.1
+share/applications/nsxiv.desktop
+share/doc/nsxiv/
+share/doc/nsxiv/examples/
+share/doc/nsxiv/examples/image-info
+share/doc/nsxiv/examples/key-handler
+share/doc/nsxiv/examples/win-title
+@tag update-desktop-database

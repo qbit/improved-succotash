@@ -1,0 +1,19 @@
+--- Help/Hyper.c.orig	Wed Apr  6 18:07:36 1994
++++ Help/Hyper.c	Wed Apr 19 23:57:24 2017
+@@ -977,7 +977,6 @@ HyperWidget hyper;
+ char   *fname;
+ {
+     Widget widget = (Widget) hyper;
+-    extern char *sys_errlist[];
+ 
+     FILE *f = fopen(fname,"r");
+     if(f)
+@@ -1448,7 +1447,7 @@ Boolean HyperGrep(HyperWidget widget,
+     text_segment *s;
+     char          expbuf[ESIZE];
+ 
+-    if(!widget->hyper.first_seg) return;
++    if(!widget->hyper.first_seg) return FALSE;
+ 
+     if(ignore_case)
+     {

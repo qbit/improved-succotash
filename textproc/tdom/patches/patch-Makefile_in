@@ -1,0 +1,35 @@
+Install to OpenBSD locations and adjust pkgIndex.tcl accordingly.
+
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -432,8 +432,8 @@ install-lib-binaries: binaries
+ 		echo " $(RANLIB) $$p"; \
+ 		$(RANLIB) $$p; \
+ 	    fi; \
+-	    echo " $(INSTALL_LIBRARY) $$p $(DESTDIR)$(pkglibdir)/$$p"; \
+-	    $(INSTALL_LIBRARY) $$p $(DESTDIR)$(pkglibdir)/$$p; \
++	    echo " $(INSTALL_LIBRARY) $$p $(DESTDIR)$(libdir)/$$p"; \
++	    $(INSTALL_LIBRARY) $$p $(DESTDIR)$(libdir)/$$p; \
+ 	    stub=`echo $$p|sed -e "s/.*\(stub\).*/\1/"`; \
+ 	    ext=`echo $$p|sed -e "s/.*\.//"`; \
+ 	    if test "x$$ext" = "xdll"; then \
+@@ -445,8 +445,8 @@ install-lib-binaries: binaries
+ 	    fi; \
+ 	  fi; \
+ 	done
+-	@echo "Installing tdomConfig.sh to $(DESTDIR)$(libdir)/"
+-	@$(INSTALL_DATA) tdomConfig.sh "$(DESTDIR)$(libdir)/tdomConfig.sh"
++	@echo "Installing tdomConfig.sh to $(DESTDIR)$(pkglibdir)/"
++	@$(INSTALL_DATA) tdomConfig.sh "$(DESTDIR)$(pkglibdir)/tdomConfig.sh"
+ 	@list='$(PKG_TCL_SOURCES)'; for p in $$list; do \
+ 	  if test -f $(srcdir)/$$p; then \
+ 	    destp=`basename $$p`; \
+@@ -456,6 +456,7 @@ install-lib-binaries: binaries
+ 	done
+ 	@if test "x$(SHARED_BUILD)" = "x1"; then \
+ 	    echo " Install pkgIndex.tcl $(DESTDIR)$(pkglibdir)"; \
++	    perl -pi -e 's!dir lib!dir .. .. lib!' pkgIndex.tcl; \
+ 	    $(INSTALL_DATA) pkgIndex.tcl $(DESTDIR)$(pkglibdir); \
+ 	fi
+ 

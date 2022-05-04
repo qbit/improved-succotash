@@ -1,0 +1,41 @@
+Don't try to execute git.
+Remove -Werror.
+
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -113,25 +113,6 @@ execute_process(
+     ERROR_QUIET
+ )
+ 
+-# Define current git branch
+-execute_process(
+-    COMMAND git rev-parse --abbrev-ref HEAD
+-    WORKING_DIRECTORY ${ROOT_DIR}
+-    OUTPUT_VARIABLE OPENRCT2_BRANCH
+-    OUTPUT_STRIP_TRAILING_WHITESPACE
+-    ERROR_QUIET
+-)
+-
+-# Define short commit hash
+-execute_process(
+-    COMMAND git rev-parse --short HEAD
+-    WORKING_DIRECTORY ${ROOT_DIR}
+-    OUTPUT_VARIABLE OPENRCT2_COMMIT_SHA1_SHORT
+-    OUTPUT_STRIP_TRAILING_WHITESPACE
+-    ERROR_QUIET
+-)
+-
+-
+ # Defines
+ if (USE_MMAP)
+     add_definitions(-DUSE_MMAP)
+@@ -259,7 +240,7 @@ else ()
+ 
+     # Compiler flags
+     set(DEBUG_LEVEL 0 CACHE STRING "Select debug level for compilation. Use value in range 0–3.")
+-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstrict-aliasing -Werror -Wundef -Wmissing-declarations -Winit-self -Wall -Wextra -Wshadow")
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstrict-aliasing -Wundef -Wmissing-declarations -Winit-self -Wall -Wextra -Wshadow")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unknown-pragmas -Wno-missing-braces -Wno-comment -Wnonnull -Wno-unused-parameter")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG=${DEBUG_LEVEL}")
+ 

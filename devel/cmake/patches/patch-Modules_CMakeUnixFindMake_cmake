@@ -1,0 +1,14 @@
+Discussion here:
+https://gitlab.kitware.com/cmake/cmake/-/merge_requests/6132
+
+--- Modules/CMakeUnixFindMake.cmake.orig	Fri Nov 11 15:37:13 2016
++++ Modules/CMakeUnixFindMake.cmake	Fri Nov 25 22:31:44 2016
+@@ -2,7 +2,7 @@
+ # file Copyright.txt or https://cmake.org/licensing for details.
+ 
+ 
+-find_program(CMAKE_MAKE_PROGRAM NAMES gmake make smake)
++find_program(CMAKE_MAKE_PROGRAM NAMES make gmake smake)
+ mark_as_advanced(CMAKE_MAKE_PROGRAM)
+ 
+ # Look for a make tool provided by Xcode

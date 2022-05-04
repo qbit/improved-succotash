@@ -1,0 +1,503 @@
+Index: custom/conf/app.example.ini
+--- custom/conf/app.example.ini.orig
++++ custom/conf/app.example.ini
+@@ -15,7 +15,7 @@
+ APP_NAME = ; Gitea: Git with a cup of tea
+ ;;
+ ;; RUN_USER will automatically detect the current user - but you can set it here change it if you run locally
+-RUN_USER = ; git
++RUN_USER = _gitea ; git
+ ;;
+ ;; Application run mode, affects performance and debugging. Either "dev", "prod" or "test", default is "prod"
+ RUN_MODE = ; prod
+@@ -92,7 +92,7 @@ RUN_MODE = ; prod
+ ;SSH_LISTEN_HOST =
+ ;;
+ ;; Port number to be exposed in clone URL
+-;SSH_PORT = 22
++SSH_PORT =
+ ;;
+ ;; The port number the builtin SSH server should listen on
+ ;SSH_LISTEN_PORT = %(SSH_PORT)s
+@@ -183,15 +183,15 @@ RUN_MODE = ; prod
+ ;; $ openssl pkcs12 -in cert.pfx -out cert.pem -nokeys
+ ;; $ openssl pkcs12 -in cert.pfx -out key.pem -nocerts -nodes
+ ;; Paths are relative to CUSTOM_PATH
+-;CERT_FILE = https/cert.pem
+-;KEY_FILE = https/key.pem
++CERT_FILE = ${LOCALSTATEDIR}/gitea/custom/https/cert.pem
++KEY_FILE = ${LOCALSTATEDIR}/gitea/custom/https/key.pem
+ ;;
+ ;; Root directory containing templates and static files.
+ ;; default is the path where Gitea is executed
+ ;STATIC_ROOT_PATH =
+ ;;
+ ;; Default path for App data
+-;APP_DATA_PATH = data
++APP_DATA_PATH = ${LOCALSTATEDIR}/gitea/data
+ ;;
+ ;; Enable gzip compression for runtime-generated content, static resources excluded
+ ;ENABLE_GZIP = false
+@@ -202,7 +202,7 @@ RUN_MODE = ; prod
+ ;ENABLE_PPROF = false
+ ;;
+ ;; PPROF_DATA_PATH, use an absolute path when you start gitea as service
+-;PPROF_DATA_PATH = data/tmp/pprof
++PPROF_DATA_PATH = ${LOCALSTATEDIR}/gitea/data/tmp/pprof
+ ;;
+ ;; Landing page, can be "home", "explore", "organizations" or "login"
+ ;; The "login" choice is not a security measure but just a UI flow change, use REQUIRE_SIGNIN_VIEW to force users to log in.
+@@ -212,7 +212,7 @@ RUN_MODE = ; prod
+ ;LFS_START_SERVER = false
+ ;;
+ ;; Where your lfs files reside, default is data/lfs.
+-;LFS_CONTENT_PATH = data/lfs
++LFS_CONTENT_PATH = ${LOCALSTATEDIR}/gitea/data/lfs
+ ;;
+ ;; LFS authentication secret, change this yourself
+ LFS_JWT_SECRET =
+@@ -253,10 +253,10 @@ LFS_JWT_SECRET =
+ ;;
+ ;; MySQL Configuration
+ ;;
+-DB_TYPE = mysql
+-HOST = 127.0.0.1:3306 ; can use socket e.g. /var/run/mysqld/mysqld.sock
+-NAME = gitea
+-USER = root
++;DB_TYPE = mysql
++;HOST = 127.0.0.1:3306 ; can use socket e.g. /var/run/mysqld/mysqld.sock
++;NAME = gitea
++;USER = root
+ ;PASSWD = ;Use PASSWD = `your password` for quoting if you use special characters in the password.
+ ;SSL_MODE = false ; either "false" (default), "true", or "skip-verify"
+ ;CHARSET = utf8mb4 ;either "utf8" or "utf8mb4", default is "utf8mb4".
+@@ -268,9 +268,9 @@ USER = root
+ ;; Postgres Configuration
+ ;;
+ ;DB_TYPE = postgres
+-;HOST = 127.0.0.1:5432 ; can use socket e.g. /var/run/postgresql/
++;HOST = /tmp
+ ;NAME = gitea
+-;USER = root
++;USER = %(RUN_USER)s
+ ;PASSWD =
+ ;SCHEMA =
+ ;SSL_MODE=disable ;either "disable" (default), "require", or "verify-full"
+@@ -279,8 +279,8 @@ USER = root
+ ;;
+ ;; SQLite Configuration
+ ;;
+-;DB_TYPE = sqlite3
+-;PATH= ; defaults to data/gitea.db
++DB_TYPE = sqlite3
++PATH = ${LOCALSTATEDIR}/gitea/data/gitea.db
+ ;SQLITE_TIMEOUT = ; Query timeout defaults to: 500
+ ;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@@ -331,7 +331,7 @@ INSTALL_LOCK = false
+ SECRET_KEY =
+ ;;
+ ;; Secret used to validate communication within Gitea binary.
+-INTERNAL_TOKEN=
++INTERNAL_TOKEN =
+ ;;
+ ;; Instead of defining internal token in the configuration, this configuration option can be used to give Gitea a path to a file that contains the internal token (example value: file:/etc/gitea/internal_token)
+ ;INTERNAL_TOKEN_URI = ;e.g. /etc/gitea/internal_token
+@@ -366,7 +366,7 @@ INTERNAL_TOKEN=
+ ;; This enables the users to access and modify this config file and the Gitea database and interrupt the Gitea service.
+ ;; By modifying the Gitea database, users can gain Gitea administrator privileges.
+ ;; It also enables them to access other resources available to the user on the operating system that is running the Gitea instance and perform arbitrary actions in the name of the Gitea OS user.
+-;; WARNING: This maybe harmful to you website or your operating system.
++;; WARNING: This maybe harmful to your website or your operating system.
+ ;DISABLE_GIT_HOOKS = true
+ ;;
+ ;; Set to true to disable webhooks feature.
+@@ -428,7 +428,7 @@ ENABLE = true
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-[U2F]
++;[U2F]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -437,7 +437,7 @@ ENABLE = true
+ ;; https://developers.yubico.com/U2F/App_ID.html
+ ;;
+ ;; DEPRECATED - this only applies to previously registered security keys using the U2F standard
+-APP_ID = ; e.g. http://localhost:3000/
++;APP_ID = ; e.g. http://localhost:3000/
+ 
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@@ -446,14 +446,14 @@ APP_ID = ; e.g. http://localhost:3000/
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Root path for the log files - defaults to %(GITEA_WORK_DIR)/log
+-;ROOT_PATH =
++ROOT_PATH = ${LOCALSTATEDIR}/log/gitea
+ ;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Main Logger
+ ;;
+ ;; Either "console", "file", "conn", "smtp" or "database", default is "console"
+ ;; Use comma to separate multiple modes, e.g. "console, file"
+-MODE = console
++MODE = file
+ ;;
+ ;; Either "Trace", "Debug", "Info", "Warn", "Error", "Critical", default is "Trace"
+ LEVEL = Info
+@@ -622,7 +622,7 @@ PATH =
+ ;EMAIL_DOMAIN_BLOCKLIST =
+ ;;
+ ;; Disallow registration, only allow admins to create accounts.
+-;DISABLE_REGISTRATION = false
++DISABLE_REGISTRATION = true
+ ;;
+ ;; Allow registration only using gitea itself, it works only when DISABLE_REGISTRATION is false
+ ;ALLOW_ONLY_INTERNAL_REGISTRATION = false
+@@ -631,7 +631,7 @@ PATH =
+ ;ALLOW_ONLY_EXTERNAL_REGISTRATION = false
+ ;;
+ ;; User must sign in to view anything.
+-;REQUIRE_SIGNIN_VIEW = false
++REQUIRE_SIGNIN_VIEW = true
+ ;;
+ ;; Mail notification
+ ;ENABLE_NOTIFY_MAIL = false
+@@ -666,11 +666,11 @@ PATH =
+ ;;
+ ;; Default value for KeepEmailPrivate
+ ;; Each new user will get the value of this setting copied into their profile
+-;DEFAULT_KEEP_EMAIL_PRIVATE = false
++DEFAULT_KEEP_EMAIL_PRIVATE = true
+ ;;
+ ;; Default value for AllowCreateOrganization
+ ;; Every new user will have rights set to create organizations depending on this setting
+-;DEFAULT_ALLOW_CREATE_ORGANIZATION = true
++DEFAULT_ALLOW_CREATE_ORGANIZATION = false
+ ;; Default value for IsRestricted
+ ;; Every new user will have restricted permissions depending on this setting
+ ;DEFAULT_USER_IS_RESTRICTED = false
+@@ -679,7 +679,7 @@ PATH =
+ ;; Limited is for users visible only to signed users
+ ;; Private is for users visible only to members of their organizations
+ ;; Public is for users visible for everyone
+-;DEFAULT_USER_VISIBILITY = public
++DEFAULT_USER_VISIBILITY = private
+ ;;
+ ;; Set which visibility modes a user can have
+ ;ALLOWED_USER_VISIBILITY_MODES = public,limited,private
+@@ -688,7 +688,7 @@ PATH =
+ ;; Limited is for organizations visible only to signed users
+ ;; Private is for organizations visible only to members of the organization
+ ;; Public is for organizations visible to everyone
+-;DEFAULT_ORG_VISIBILITY = public
++DEFAULT_ORG_VISIBILITY = private
+ ;;
+ ;; Default value for DefaultOrgMemberVisible
+ ;; True will make the membership of the users visible when added to the organisation
+@@ -753,13 +753,13 @@ PATH =
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[repository]
++[repository]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Root path for storing all repository data. It must be an absolute path. By default, it is stored in a sub-directory of `APP_DATA_PATH`.
+-;ROOT =
++ROOT = ${LOCALSTATEDIR}/gitea/gitea-repositories
+ ;;
+ ;; The script type this server supports. Usually this is `bash`, but some users report that only `sh` is available.
+-;SCRIPT_TYPE = bash
++SCRIPT_TYPE = sh
+ ;;
+ ;; DETECTED_CHARSETS_ORDER tie-break order for detected charsets.
+ ;; If the charsets have equal confidence, tie-breaking will be done by order in this list
+@@ -774,7 +774,7 @@ PATH =
+ ;FORCE_PRIVATE = false
+ ;;
+ ;; Default privacy setting when creating a new repository, allowed values: last, private, public. Default is last which means the last setting used.
+-;DEFAULT_PRIVATE = last
++DEFAULT_PRIVATE = private
+ ;;
+ ;; Default private when using push-to-create
+ ;DEFAULT_PUSH_CREATE_PRIVATE = true
+@@ -790,7 +790,7 @@ PATH =
+ ;;
+ ;; Preferred Licenses to place at the top of the List
+ ;; The name here must match the filename in options/license or custom/options/license
+-;PREFERRED_LICENSES = Apache License 2.0,MIT License
++PREFERRED_LICENSES = BSD-2-Clause,ISC ; Apache License 2.0,MIT License
+ ;;
+ ;; Disable the ability to interact with repositories using the HTTP protocol
+ ;DISABLE_HTTP_GIT = false
+@@ -846,16 +846,16 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[repository.local]
++[repository.local]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+ ;; Path for local repository copy. Defaults to `tmp/local-repo`
+-;LOCAL_COPY_PATH = tmp/local-repo
++LOCAL_COPY_PATH = ${LOCALSTATEDIR}/gitea/tmp/local-repo
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[repository.upload]
++[repository.upload]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -863,7 +863,7 @@ PATH =
+ ;ENABLED = true
+ ;;
+ ;; Path for uploads. Defaults to `data/tmp/uploads` (tmp gets deleted on gitea restart)
+-;TEMP_PATH = data/tmp/uploads
++TEMP_PATH = ${LOCALSTATEDIR}/gitea/data/tmp/uploads
+ ;;
+ ;; Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
+ ;ALLOWED_TYPES =
+@@ -1019,7 +1019,7 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[ui]
++[ui]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -1050,7 +1050,7 @@ PATH =
+ ;MAX_DISPLAY_FILE_SIZE = 8388608
+ ;;
+ ;; Whether the email of the user should be shown in the Explore Users page
+-;SHOW_USER_EMAIL = true
++SHOW_USER_EMAIL = false
+ ;;
+ ;; Set the default theme for the Gitea install
+ ;DEFAULT_THEME = auto
+@@ -1185,7 +1185,7 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[indexer]
++[indexer]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -1196,7 +1196,7 @@ PATH =
+ ;ISSUE_INDEXER_TYPE = bleve
+ ;;
+ ;; Issue indexer storage path, available when ISSUE_INDEXER_TYPE is bleve
+-;ISSUE_INDEXER_PATH = indexers/issues.bleve
++ISSUE_INDEXER_PATH = ${LOCALSTATEDIR}/gitea/indexers/issues.bleve
+ ;;
+ ;; Issue indexer connection string, available when ISSUE_INDEXER_TYPE is elasticsearch
+ ;ISSUE_INDEXER_CONN_STR = http://elastic:changeme@localhost:9200
+@@ -1214,7 +1214,7 @@ PATH =
+ ;; When ISSUE_INDEXER_QUEUE_TYPE is levelqueue, this will be the path where the queue will be saved.
+ ;; This can be overridden by `ISSUE_INDEXER_QUEUE_CONN_STR`.
+ ;; default is queues/common
+-;ISSUE_INDEXER_QUEUE_DIR = queues/common; **DEPRECATED** use settings in `[queue.issue_indexer]`.
++ISSUE_INDEXER_QUEUE_DIR = ${LOCALSTATEDIR}/gitea/indexers/issues.queue; **DEPRECATED** use settings in `[queue.issue_indexer]`.
+ ;;
+ ;; When `ISSUE_INDEXER_QUEUE_TYPE` is `redis`, this will store the redis connection string.
+ ;; When `ISSUE_INDEXER_QUEUE_TYPE` is `levelqueue`, this is a directory or additional options of
+@@ -1235,7 +1235,7 @@ PATH =
+ ;REPO_INDEXER_TYPE = bleve
+ ;;
+ ;; Index file used for code search. available when `REPO_INDEXER_TYPE` is bleve
+-;REPO_INDEXER_PATH = indexers/repos.bleve
++REPO_INDEXER_PATH = ${LOCALSTATEDIR}/gitea/indexers/repos.bleve
+ ;;
+ ;; Code indexer connection string, available when `REPO_INDEXER_TYPE` is elasticsearch. i.e. http://elastic:changeme@localhost:9200
+ ;REPO_INDEXER_CONN_STR =
+@@ -1315,19 +1315,19 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[admin]
++[admin]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+ ;; Disallow regular (non-admin) users from creating organizations.
+-;DISABLE_REGULAR_ORG_CREATION = false
++DISABLE_REGULAR_ORG_CREATION = true
+ ;;
+ ;; Default configuration for email notifications for users (user configurable). Options: enabled, onmention, disabled
+ ;DEFAULT_EMAIL_NOTIFICATIONS = enabled
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[openid]
++[openid]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -1348,7 +1348,7 @@ PATH =
+ ;;  - <username>.livejournal.com
+ ;;
+ ;; Whether to allow signin in via OpenID
+-;ENABLE_OPENID_SIGNIN = true
++ENABLE_OPENID_SIGNIN = false
+ ;;
+ ;; Whether to allow registering via OpenID
+ ;; Do not include to rely on rhw DISABLE_REGISTRATION setting
+@@ -1433,7 +1433,7 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[mailer]
++[mailer]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -1450,7 +1450,7 @@ PATH =
+ ;; QQ: smtp.qq.com:465
+ ;; As per RFC 8314 using Implicit TLS/SMTPS on port 465 (if supported) is recommended,
+ ;; otherwise STARTTLS on port 587 should be used.
+-;HOST =
++HOST = localhost:25
+ ;;
+ ;; Disable HELO operation when hostnames are different.
+ ;DISABLE_HELO =
+@@ -1463,15 +1463,15 @@ PATH =
+ ;;
+ ;; Use client certificate
+ ;USE_CERTIFICATE = false
+-;CERT_FILE = custom/mailer/cert.pem
+-;KEY_FILE = custom/mailer/key.pem
++CERT_FILE = ${LOCALSTATEDIR}/gitea/custom/mailer/cert.pem
++KEY_FILE = ${LOCALSTATEDIR}/gitea/custom/mailer/key.pem
+ ;;
+ ;; Should SMTP connect with TLS, (if port ends with 465 TLS will always be used.)
+ ;; If this is false but STARTTLS is supported the connection will be upgraded to TLS opportunistically.
+ ;IS_TLS_ENABLED = false
+ ;;
+ ;; Mail from address, RFC 5322. This can be just an email address, or the `"Name" <email@example.com>` format
+-;FROM =
++FROM = gitea@%(DOMAIN)s
+ ;;
+ ;; Sometimes it is helpful to use a different address on the envelope. Set this to use ENVELOPE_FROM as the from on the envelope. Set to `<>` to send an empty address.
+ ;ENVELOPE_FROM =
+@@ -1484,13 +1484,13 @@ PATH =
+ ;PASSWD =
+ ;;
+ ;; Send mails as plain text
+-;SEND_AS_PLAIN_TEXT = false
++SEND_AS_PLAIN_TEXT = true
+ ;;
+ ;; Set Mailer Type (either SMTP, sendmail or dummy to just send to the log)
+ ;MAILER_TYPE = smtp
+ ;;
+ ;; Specify an alternative sendmail binary
+-;SENDMAIL_PATH = sendmail
++SENDMAIL_PATH = /usr/sbin/sendmail
+ ;;
+ ;; Specify any extra sendmail arguments
+ ;SENDMAIL_ARGS =
+@@ -1545,19 +1545,19 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[session]
++[session]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+ ;; Either "memory", "file", or "redis", default is "memory"
+-;PROVIDER = memory
++PROVIDER = file
+ ;;
+ ;; Provider config options
+ ;; memory: doesn't have any config yet
+ ;; file: session file path, e.g. `data/sessions`
+ ;; redis: network=tcp,addr=:6379,password=macaron,db=0,pool_size=100,idle_timeout=180
+ ;; mysql: go-sql-driver/mysql dsn config string, e.g. `root:password@/session_table`
+-;PROVIDER_CONFIG = data/sessions
++PROVIDER_CONFIG = ${LOCALSTATEDIR}/gitea/data/sessions
+ ;;
+ ;; Session cookie name
+ ;COOKIE_NAME = i_like_gitea
+@@ -1576,12 +1576,12 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[picture]
++[picture]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+-;AVATAR_UPLOAD_PATH = data/avatars
+-;REPOSITORY_AVATAR_UPLOAD_PATH = data/repo-avatars
++AVATAR_UPLOAD_PATH = ${LOCALSTATEDIR}/gitea/data/avatars
++REPOSITORY_AVATAR_UPLOAD_PATH = ${LOCALSTATEDIR}/gitea/data/repo-avatars
+ ;;
+ ;; How Gitea deals with missing repository avatars
+ ;; none = no avatar will be displayed; random = random avatar will be displayed; image = default image will be used
+@@ -1606,7 +1606,7 @@ PATH =
+ ;GRAVATAR_SOURCE = gravatar
+ ;;
+ ;; This value will always be true in offline mode.
+-;DISABLE_GRAVATAR = false
++DISABLE_GRAVATAR = true
+ ;;
+ ;; Federated avatar lookup uses DNS to discover avatar associated
+ ;; with emails, see https://www.libravatar.org
+@@ -1615,7 +1615,7 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[attachment]
++[attachment]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+@@ -1640,7 +1640,7 @@ PATH =
+ ;SERVE_DIRECT = false
+ ;;
+ ;; Path for attachments. Defaults to `data/attachments` only available when STORAGE_TYPE is `local`
+-;PATH = data/attachments
++PATH = ${LOCALSTATEDIR}/gitea/data/attachments
+ ;;
+ ;; Minio endpoint to connect only available when STORAGE_TYPE is `minio`
+ ;MINIO_ENDPOINT = localhost:9000
+@@ -1665,14 +1665,14 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[time]
++[time]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;
+ ;; Specifies the format for fully outputted dates. Defaults to RFC1123
+ ;; Special supported values are ANSIC, UnixDate, RubyDate, RFC822, RFC822Z, RFC850, RFC1123, RFC1123Z, RFC3339, RFC3339Nano, Kitchen, Stamp, StampMilli, StampMicro and StampNano
+ ;; For more information about the format see http://golang.org/pkg/time/#pkg-constants
+-;FORMAT =
++FORMAT = RFC1123Z
+ ;;
+ ;; Location the UI time display i.e. Asia/Shanghai
+ ;; Empty means server's location setting
+@@ -2041,14 +2041,14 @@ PATH =
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+-;[other]
++[other]
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;SHOW_FOOTER_BRANDING = false
+ ;; Show version information about Gitea and Go in the footer
+-;SHOW_FOOTER_VERSION = true
++SHOW_FOOTER_VERSION = false
+ ;; Show template execution time in the footer
+-;SHOW_FOOTER_TEMPLATE_LOAD_TIME = true
++SHOW_FOOTER_TEMPLATE_LOAD_TIME = false
+ 
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

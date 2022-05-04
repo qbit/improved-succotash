@@ -1,0 +1,14 @@
+--- configure.orig	Sun Apr 16 10:48:30 2017
++++ configure	Sun Apr 16 10:48:52 2017
+@@ -1279,8 +1279,9 @@ else
+ #line 1280 "configure"
+ #include "confdefs.h"
+ 
+-#include <iostream.h>
+-#include <fstream.h>
++#include <iostream>
++#include <fstream>
++using namespace std;
+             
+ int main() {
+ 

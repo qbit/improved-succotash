@@ -1,0 +1,11 @@
+Index: etc/cmake/dependencies.cmake
+--- etc/cmake/dependencies.cmake.orig
++++ etc/cmake/dependencies.cmake
+@@ -148,6 +148,7 @@ macro(find_dependencies)
+   endif()
+ 
+   if(NEED_LINKING_AGAINST_LIBM)
++    list(APPEND CMAKE_REQUIRED_LIBRARIES m)
+     find_library(MATH_LIBRARY m)
+   endif()
+ 

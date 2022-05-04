@@ -1,0 +1,4 @@
+@pkgpath chinese/iansui
+share/fonts/
+@fontdir share/fonts/iansui/
+share/fonts/iansui/Iansui-Regular.ttf

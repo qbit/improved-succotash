@@ -1,0 +1,12 @@
+Index: lang/qt/tests/Makefile.in
+--- lang/qt/tests/Makefile.in.orig
++++ lang/qt/tests/Makefile.in
+@@ -601,7 +601,7 @@ moc_files = \
+ AM_LDFLAGS = -no-install
+ LDADD = ../../cpp/src/libgpgmepp.la ../src/libqgpgme.la \
+         ../../../src/libgpgme.la @GPGME_QT_LIBS@ @GPG_ERROR_LIBS@ \
+-        @GPGME_QTTEST_LIBS@ @LDADD_FOR_TESTS_KLUDGE@ -lstdc++
++        @GPGME_QTTEST_LIBS@ @LDADD_FOR_TESTS_KLUDGE@
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/lang/cpp/src -I$(top_builddir)/src \
+               @GPG_ERROR_CFLAGS@ @GPGME_QT_CFLAGS@ @GPG_ERROR_CFLAGS@ \

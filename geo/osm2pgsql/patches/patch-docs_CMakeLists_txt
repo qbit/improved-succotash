@@ -1,0 +1,11 @@
+Index: docs/CMakeLists.txt
+--- docs/CMakeLists.txt.orig
++++ docs/CMakeLists.txt
+@@ -27,6 +27,4 @@ else()
+     message(STATUS "  Manual page can not be built")
+ endif()
+ 
+-if (ENABLE_INSTALL)
+-    install(FILES osm2pgsql.1 DESTINATION share/man/man1)
+-endif()
++install(FILES osm2pgsql.1 DESTINATION man/man1)

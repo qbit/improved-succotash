@@ -1,0 +1,18 @@
+- Link with libc++abi on arm (to access unwind symbols)
+
+Index: configure
+--- configure.orig
++++ configure
+@@ -18475,6 +18475,12 @@ $as_echo "#define SYMBOL_UNDERSCORE 1" >>confdefs.h
+ 
+ fi
+ 
++case "$target" in
++    arm-*-openbsd*)
++      LDFLAGS="-lc++abi $LDFLAGS"
++    ;;
++esac
++
+ FFI_EXEC_TRAMPOLINE_TABLE=0
+ case "$target" in
+      *arm*-apple-* | aarch64-apple-*)

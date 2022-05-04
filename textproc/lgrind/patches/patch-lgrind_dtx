@@ -1,0 +1,23 @@
+Fix incorrectly nested dtx.
+
+https://tex.stackexchange.com/questions/550540/lgrind-dtx-no-longer-compiles-as-of-tex-live-2020-potential-problem-with-new-la
+
+Index: lgrind.dtx
+--- lgrind.dtx.orig
++++ lgrind.dtx
+@@ -30,6 +30,7 @@
+ \documentclass{ltxdoc}
+ \CodelineIndex
+ \RecordChanges
++\begin{document}
+ \DocInput{lgrind.dtx}
+ \end{document}
+ %</driver>
+@@ -40,7 +41,6 @@
+ % \frenchspacing
+ % 
+ % \GetFileInfo{lgrind.dtx}
+-% \begin{document}
+ % \title{The \LG{} package\thanks{This file
+ %         has version number \fileversion, last
+ %         revised \filedate.}}

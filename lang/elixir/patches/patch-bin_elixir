@@ -1,0 +1,12 @@
+Index: bin/elixir
+--- bin/elixir.orig
++++ bin/elixir
+@@ -83,7 +83,7 @@ starts_with () {
+   esac
+ }
+ 
+-ERL_EXEC="erl"
++ERL_EXEC="erl${MODERL_VERSION}"
+ MODE="elixir"
+ I=1
+ E=0

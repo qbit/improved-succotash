@@ -1,0 +1,2 @@
+include/Block.h
+@static-lib lib/libBlocksRuntime.a

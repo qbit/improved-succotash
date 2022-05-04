@@ -1,0 +1,30 @@
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -2028,7 +2028,7 @@ update-po: missing-languages
+ 	$(MAKE) -C po update-po
+ 
+ missing-languages:
+-	bash -c '\
++	sh -c '\
+ 	diff -u <(cat po/LINGUAS) \
+ 		<(cd po; ls -1 *.po | sed -e "s,\.po$$,,")'
+ 
+@@ -2075,7 +2075,7 @@ help:
+ 	@echo " test-xmldriverprefs  Show preferred driver order for all models"
+ 
+ test-xml-validity.sh:	FORCE
+-	echo "#!/bin/bash" > "$@"
++	echo "#!/bin/sh" > "$@"
+ 	echo "set -e" >> "$@"
+ 	echo "xmllint --relaxng \\" >> "$@"
+ 	echo "    $(top_srcdir)/xml/preferreddrivers.rng \\" >> "$@"
+@@ -2085,7 +2085,7 @@ test-xml-validity.sh:	FORCE
+ 	chmod 755 "$@"
+ 
+ py.test.sh:	FORCE
+-	echo "#!/bin/bash" > "$@"
++	echo "#!/bin/sh" > "$@"
+ 	echo "exec ${PYTEST-py.test}" >> "$@"
+ 	chmod 755 "$@"
+ 

@@ -1,0 +1,15 @@
+Don't gzip the man pages.
+
+--- Makefile.in.orig	Sat Mar 18 05:27:48 2017
++++ Makefile.in	Tue Apr 11 21:57:44 2017
+@@ -471,8 +471,8 @@ clean_docbook::
+ install_man::
+ 	-mkdir -p $(DESTDIR)$(man1dir)
+ 	-mkdir -p $(DESTDIR)$(man5dir)
+-	for i in $(MAN_PAGE_1_LIST); do cat $(srcdir)/doc/man/$$i.1 | $(SED) 's/@version@/$(VERSION)/g' | $(GZIP_BIN) -c >  $(DESTDIR)$(man1dir)/$$i.1.gz; chmod 644 $(DESTDIR)$(man1dir)/$$i.1.gz; done
+-	for i in $(MAN_PAGE_5_LIST); do cat $(srcdir)/doc/man/$$i.5 | $(GZIP_BIN) -c >  $(DESTDIR)$(man5dir)/$$i.5.gz; chmod 644 $(DESTDIR)$(man5dir)/$$i.5.gz; done
++	for i in $(MAN_PAGE_1_LIST); do cat $(srcdir)/doc/man/$$i.1 | $(SED) 's/@version@/$(VERSION)/g' > $(DESTDIR)$(man1dir)/$$i.1; chmod 644 $(DESTDIR)$(man1dir)/$$i.1; done
++	for i in $(MAN_PAGE_5_LIST); do cat $(srcdir)/doc/man/$$i.5 > $(DESTDIR)$(man5dir)/$$i.5; chmod 644 $(DESTDIR)$(man5dir)/$$i.5; done
+ 
+ download_dlx: $(DLXLINUX_TAR)
+ 

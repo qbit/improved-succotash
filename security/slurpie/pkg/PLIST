@@ -1,0 +1,6 @@
+sbin/slurp
+sbin/slurpie
+share/doc/slurpie/
+share/doc/slurpie/README
+share/examples/slurpie/
+share/examples/slurpie/hosts.dat

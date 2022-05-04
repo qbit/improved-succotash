@@ -1,0 +1,2 @@
+@bin bin/mawk
+@man man/man1/mawk.1

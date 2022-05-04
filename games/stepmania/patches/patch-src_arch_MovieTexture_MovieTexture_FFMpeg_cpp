@@ -1,0 +1,24 @@
+Update API usage to deal with current vs new FFmpeg API.
+
+Index: src/arch/MovieTexture/MovieTexture_FFMpeg.cpp
+--- src/arch/MovieTexture/MovieTexture_FFMpeg.cpp.orig
++++ src/arch/MovieTexture/MovieTexture_FFMpeg.cpp
+@@ -445,7 +445,7 @@ RString MovieDecoder_FFMpeg::Open( RString sFile )
+ 		return "Couldn't find any video streams";
+ 	m_pStream = m_fctx->streams[stream_idx];
+ 
+-	if( m_pStream->codec->codec_id == avcodec::CODEC_ID_NONE )
++	if( m_pStream->codec->codec_id == avcodec::AV_CODEC_ID_NONE )
+ 		return ssprintf( "Unsupported codec %08x", m_pStream->codec->codec_tag );
+ 
+ 	RString sError = OpenCodec();
+@@ -473,9 +473,6 @@ RString MovieDecoder_FFMpeg::OpenCodec()
+ 	m_pStream->codec->workaround_bugs   = 1;
+ 	m_pStream->codec->idct_algo         = FF_IDCT_AUTO;
+ 	m_pStream->codec->error_concealment = 3;
+-
+-	if( pCodec->capabilities & CODEC_CAP_DR1 )
+-		m_pStream->codec->flags |= CODEC_FLAG_EMU_EDGE;
+ 
+ 	LOG->Trace("Opening codec %s", pCodec->name );
+ 

@@ -1,0 +1,10 @@
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginAdditionalTargetInfo.cmake
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginConfig.cmake
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginConfigVersion.cmake
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginDependencies.cmake
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginTargets${MODCMAKE_BUILD_SUFFIX}
+lib/cmake/Qt6Qml/QmlPlugins/Qt6qtquicktimelinepluginTargets.cmake
+lib/qt6/qml/QtQuick/Timeline/
+@so lib/qt6/qml/QtQuick/Timeline/libqtquicktimelineplugin.so
+lib/qt6/qml/QtQuick/Timeline/plugins.qmltypes
+lib/qt6/qml/QtQuick/Timeline/qmldir

@@ -1,0 +1,11 @@
+Index: src/openbsd/up-backend.c
+--- src/openbsd/up-backend.c.orig
++++ src/openbsd/up-backend.c
+@@ -24,6 +24,7 @@
+ #include "up-backend.h"
+ #include "up-daemon.h"
+ #include "up-device.h"
++#include "up-backend-bsd-private.h"
+ #include <string.h> /* strcmp() */
+ 
+ static void	up_backend_class_init	(UpBackendClass	*klass);

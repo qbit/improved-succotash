@@ -1,0 +1,13 @@
+@rcscript ${RCDIR}/tailscaled
+@comment bin/addlicense
+@comment bin/cloner
+@bin bin/derper
+@bin bin/derpprobe
+@comment bin/hello
+@comment bin/mkpkg
+@comment bin/printdep
+@comment bin/speedtest
+@bin bin/tailscale
+@bin bin/tailscaled
+@comment bin/testcontrol
+@comment bin/tsshd

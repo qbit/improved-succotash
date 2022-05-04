@@ -1,0 +1,17 @@
+@conflict py-jaraco-functoolsjaraco.functools-*
+@conflict py3-jaraco-functoolsjaraco.functools-*
+@pkgpath devel/py-jaraco-functools
+lib/python${MODPY_VERSION}/site-packages/jaraco/
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/requires.txt
+lib/python${MODPY_VERSION}/site-packages/jaraco.functools-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/jaraco/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/jaraco/${MODPY_PYCACHE}functools.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/jaraco/functools.py
+lib/python${MODPY_VERSION}/site-packages/lib/jaraco/
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/lib/jaraco/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/lib/jaraco/${MODPY_PYCACHE}functools.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lib/jaraco/functools.py

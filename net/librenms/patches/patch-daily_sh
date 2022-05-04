@@ -1,0 +1,21 @@
+Index: daily.sh
+--- daily.sh.orig
++++ daily.sh
+@@ -32,7 +32,7 @@ LOG_DIR=$(php -r "@include '${LIBRENMS_DIR}/config.php
+ # get the librenms user
+ # shellcheck source=.env.example
+ source "${LIBRENMS_DIR}/.env"
+-LIBRENMS_USER="${LIBRENMS_USER:-librenms}"
++LIBRENMS_USER="${LIBRENMS_USER:-_librenms}"
+ LIBRENMS_USER_ID=$(id -u "$LIBRENMS_USER")
+ 
+ #######################################
+@@ -132,7 +132,7 @@ set_notifiable_result() {
+ check_dependencies() {
+     local branch ver_56 ver_71 ver_72 ver_73 python3 python_deps phpver pythonver old_branches msg
+ 
+-    branch=$(git rev-parse --abbrev-ref HEAD)
++    branch=master
+     scripts/check_requirements.py > /dev/null 2>&1 || pip3 install -r requirements.txt > /dev/null 2>&1
+ 
+     ver_56=$(php -r "echo (int)version_compare(PHP_VERSION, '5.6.4', '<');")

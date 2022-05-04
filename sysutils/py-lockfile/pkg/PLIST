@@ -1,0 +1,23 @@
+@conflict py-lockfile-*
+@pkgpath sysutils/py-lockfile
+lib/python${MODPY_VERSION}/site-packages/lockfile/
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/not-zip-safe
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/pbr.json
+lib/python${MODPY_VERSION}/site-packages/lockfile-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+lib/python${MODPY_VERSION}/site-packages/lockfile/__init__.py
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}linklockfile.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}mkdirlockfile.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}pidlockfile.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}sqlitelockfile.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/${MODPY_PYCACHE}symlinklockfile.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/lockfile/linklockfile.py
+lib/python${MODPY_VERSION}/site-packages/lockfile/mkdirlockfile.py
+lib/python${MODPY_VERSION}/site-packages/lockfile/pidlockfile.py
+lib/python${MODPY_VERSION}/site-packages/lockfile/sqlitelockfile.py
+lib/python${MODPY_VERSION}/site-packages/lockfile/symlinklockfile.py

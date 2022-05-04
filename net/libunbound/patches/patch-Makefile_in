@@ -1,0 +1,11 @@
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -584,7 +584,6 @@ install-lib:	lib $(UNBOUND_EVENT_INSTALL)
+ 	done
+ 	$(LIBTOOL) --mode=install cp unbound.h $(DESTDIR)$(includedir)/unbound.h
+ 	$(LIBTOOL) --mode=install cp libunbound.la $(DESTDIR)$(libdir)
+-	$(LIBTOOL) --mode=finish $(DESTDIR)$(libdir)
+ 
+ install-all:	all $(PYTHONMOD_INSTALL) $(PYUNBOUND_INSTALL) $(UNBOUND_EVENT_INSTALL) install-lib
+ 	$(INSTALL) -m 755 -d $(DESTDIR)$(sbindir)

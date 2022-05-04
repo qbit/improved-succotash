@@ -1,0 +1,13 @@
+Index: t/sa_compile.t
+--- t/sa_compile.t.orig
++++ t/sa_compile.t
+@@ -12,8 +12,7 @@ use Config;
+ use File::Basename;
+ use File::Path qw/mkpath/;
+ 
+-my $temp_binpath = $Config{sitebinexp};
+-$temp_binpath =~ s|^\Q$Config{siteprefixexp}\E/||;
++my $temp_binpath = "bin";
+ 
+ use Test::More;
+ plan skip_all => "Long running tests disabled" unless conf_bool('run_long_tests');

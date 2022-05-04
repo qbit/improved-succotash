@@ -1,0 +1,110 @@
+@newgroup _collectd:652
+@newuser _collectd:652:652:daemon:Collectd Daemon:/var/empty:/sbin/nologin
+@rcscript ${RCDIR}/collectd
+@bin bin/collectd-nagios
+@bin bin/collectd-tg
+@bin bin/collectdctl
+include/collectd/
+include/collectd/client.h
+include/collectd/lcc_features.h
+include/collectd/network.h
+include/collectd/network_buffer.h
+include/collectd/network_parse.h
+include/collectd/server.h
+include/collectd/types.h
+lib/collectd/
+lib/collectd/aggregation.so
+lib/collectd/apache.so
+lib/collectd/apcups.so
+lib/collectd/ascent.so
+lib/collectd/bind.so
+lib/collectd/cpu.so
+lib/collectd/csv.so
+lib/collectd/curl.so
+lib/collectd/curl_json.so
+lib/collectd/curl_xml.so
+lib/collectd/df.so
+lib/collectd/disk.so
+lib/collectd/dns.so
+lib/collectd/email.so
+lib/collectd/exec.so
+lib/collectd/filecount.so
+lib/collectd/interface.so
+lib/collectd/load.so
+lib/collectd/log_logstash.so
+lib/collectd/logfile.so
+lib/collectd/match_empty_counter.so
+lib/collectd/match_hashed.so
+lib/collectd/match_regex.so
+lib/collectd/match_timediff.so
+lib/collectd/match_value.so
+lib/collectd/memcached.so
+lib/collectd/memory.so
+lib/collectd/network.so
+lib/collectd/nginx.so
+lib/collectd/ntpd.so
+lib/collectd/olsrd.so
+lib/collectd/openvpn.so
+lib/collectd/pf.so
+lib/collectd/powerdns.so
+lib/collectd/processes.so
+lib/collectd/swap.so
+lib/collectd/syslog.so
+lib/collectd/table.so
+lib/collectd/tail.so
+lib/collectd/tail_csv.so
+lib/collectd/target_notification.so
+lib/collectd/target_replace.so
+lib/collectd/target_scale.so
+lib/collectd/target_set.so
+lib/collectd/target_v5upgrade.so
+lib/collectd/tcpconns.so
+lib/collectd/teamspeak2.so
+lib/collectd/ted.so
+lib/collectd/threshold.so
+lib/collectd/unixsock.so
+lib/collectd/uptime.so
+lib/collectd/users.so
+lib/collectd/uuid.so
+lib/collectd/write_graphite.so
+lib/collectd/write_http.so
+lib/collectd/write_log.so
+@comment lib/libcollectdclient.la
+@lib lib/libcollectdclient.so.${LIBcollectdclient_VERSION}
+lib/pkgconfig/libcollectdclient.pc
+@comment libdata/perl5/${MACHINE_ARCH}-openbsd/
+@comment libdata/perl5/${MACHINE_ARCH}-openbsd/perllocal.pod
+libdata/perl5/site_perl/Collectd/
+libdata/perl5/site_perl/Collectd.pm
+libdata/perl5/site_perl/Collectd/Plugins/
+libdata/perl5/site_perl/Collectd/Plugins/OpenVZ.pm
+libdata/perl5/site_perl/Collectd/Unixsock.pm
+@man man/man1/collectd-nagios.1
+@man man/man1/collectd-tg.1
+@man man/man1/collectd.1
+@man man/man1/collectdctl.1
+@man man/man1/collectdmon.1
+@man man/man3p/Collectd::Unixsock.3p
+@man man/man5/collectd-email.5
+@man man/man5/collectd-exec.5
+@man man/man5/collectd-java.5
+@man man/man5/collectd-lua.5
+@man man/man5/collectd-perl.5
+@man man/man5/collectd-python.5
+@man man/man5/collectd-threshold.5
+@man man/man5/collectd-unixsock.5
+@man man/man5/collectd.conf.5
+@man man/man5/types.db.5
+@bin sbin/collectd
+@bin sbin/collectdmon
+share/collectd/
+share/collectd/postgresql_default.conf
+share/collectd/types.db
+share/doc/pkg-readmes/${PKGSTEM}
+share/examples/collectd.conf
+@mode 640
+@group _collectd
+@sample ${SYSCONFDIR}/collectd.conf
+@mode
+@owner _collectd
+@sample /var/collectd/

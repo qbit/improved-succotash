@@ -1,0 +1,14 @@
+Install manual page to the correct directory.
+
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -48,7 +48,7 @@ DEPFLAGS ?= -MD -MP -MF $(@:.o=.d)
+ 
+ DESTDIR ?=
+ PREFIX ?= /usr
+-MANDIR ?= $(PREFIX)/share/man
++MANDIR ?= $(PREFIX)/man
+ 
+ LOCAL_CPPFLAGS := \
+     -D__EXTENSIONS__ \

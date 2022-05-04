@@ -1,0 +1,4 @@
+@man man/man1/smbsniff.1
+sbin/smbsniff
+share/doc/smbsniff/
+share/doc/smbsniff/README

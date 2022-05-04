@@ -1,0 +1,17 @@
+Index: sample/sample-config-files/tls-home.conf
+--- sample/sample-config-files/tls-home.conf.orig
++++ sample/sample-config-files/tls-home.conf
+@@ -48,10 +48,10 @@ cipher AES-256-GCM
+ ; port 1194
+ 
+ # Downgrade UID and GID to
+-# "nobody" after initialization
++# "_openvpn" after initialization
+ # for extra security.
+-; user nobody
+-; group nobody
++user _openvpn
++group _openvpn
+ 
+ # If you built OpenVPN with
+ # LZO compression, uncomment

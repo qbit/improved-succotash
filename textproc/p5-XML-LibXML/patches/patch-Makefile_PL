@@ -1,0 +1,35 @@
+Alien::Build has been designed to build dependencies on the fly
+when installing from CPAN.  That does not make sense for our ports
+tree.  Remove Alien::Libxml2 references, instead link against the
+library from our libxml-2 package.
+
+Index: Makefile.PL
+--- Makefile.PL.orig
++++ Makefile.PL
+@@ -17,15 +17,12 @@ use warnings;
+ 
+ require 5.008001;
+ 
+-use Alien::Base::Wrapper qw( Alien::Libxml2 );
+ use ExtUtils::MakeMaker;
+ use Config;
+ 
+ my $SKIP_SAX_INSTALL = $ENV{SKIP_SAX_INSTALL};
+ 
+ my %ConfigReqs = (
+-  "Alien::Libxml2" => '0.14',
+-  "Alien::Base::Wrapper" => 0,
+   "Config" => 0,
+   "ExtUtils::MakeMaker" => 0,
+ );
+@@ -71,7 +68,9 @@ my %prereqs = (
+ my %xsbuild = (
+   DEFINE  => '-DHAVE_UTF8',
+   OBJECT  => '$(O_FILES)',
+-  Alien::Base::Wrapper->mm_args,
++  CCFLAGS => $Config{ccflags} .
++	' -I${LOCALBASE}/include -I${LOCALBASE}/include/libxml2',
++  LIBS    => '-L${LOCALBASE}/lib -lxml2',
+ );
+ 
+ my %WriteMakefileArgs = (

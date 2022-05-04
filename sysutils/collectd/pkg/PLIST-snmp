@@ -1,0 +1,3 @@
+lib/collectd/snmp.so
+lib/collectd/snmp_agent.so
+@man man/man5/collectd-snmp.5

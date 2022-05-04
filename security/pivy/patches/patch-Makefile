@@ -1,0 +1,12 @@
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -205,7 +205,7 @@ PIVTOOL_CFLAGS=		$(PCSC_CFLAGS) \
+ 			$(SYSTEM_CFLAGS) \
+ 			$(SECURITY_CFLAGS) \
+ 			$(CONFIG_CFLAGS) \
+-			-O2 -g -D_GNU_SOURCE \
++			$(COPTFLAGS) -D_GNU_SOURCE \
+ 			-DPIVY_VERSION='"$(VERSION)"'
+ PIVTOOL_LDFLAGS=	$(SYSTEM_LDFLAGS)
+ PIVTOOL_LIBS=		$(PCSC_LIBS) \

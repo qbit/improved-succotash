@@ -1,0 +1,16 @@
+Generate __data_start symbol that marks the start of .data when __data_start
+is referenced from code being linked.
+
+Index: tools/lld/ELF/Symbols.h
+--- tools/lld/ELF/Symbols.h.orig
++++ tools/lld/ELF/Symbols.h
+@@ -436,6 +436,9 @@ struct ElfSym {
+   // __bss_start
+   static Defined *bss;
+ 
++  // __data_start
++  static Defined *data;
++
+   // etext and _etext
+   static Defined *etext1;
+   static Defined *etext2;

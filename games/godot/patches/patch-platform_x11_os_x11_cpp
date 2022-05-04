@@ -1,0 +1,36 @@
+fix libXrandr library name and load sndio
+use OpenBSD joypad class
+
+Index: platform/x11/os_x11.cpp
+--- platform/x11/os_x11.cpp.orig
++++ platform/x11/os_x11.cpp
+@@ -157,7 +157,7 @@ Error OS_X11::initialize(const VideoMode &p_desired, i
+ 	int xrandr_minor = 0;
+ 	int event_base, error_base;
+ 	xrandr_ext_ok = XRRQueryExtension(x11_display, &event_base, &error_base);
+-	xrandr_handle = dlopen("libXrandr.so.2", RTLD_LAZY);
++	xrandr_handle = dlopen("libXrandr.so", RTLD_LAZY);
+ 	if (!xrandr_handle) {
+ 		err = dlerror();
+ 		// For some arcane reason, NetBSD now ships libXrandr.so.3 while the rest of the world has libXrandr.so.2...
+@@ -594,7 +594,7 @@ Error OS_X11::initialize(const VideoMode &p_desired, i
+ 
+ 	window_has_focus = true; // Set focus to true at init
+ #ifdef JOYDEV_ENABLED
+-	joypad = memnew(JoypadLinux(input));
++	joypad = memnew(JoypadOpenBSD(input));
+ #endif
+ 
+ 	power_manager = memnew(PowerX11);
+@@ -4056,6 +4056,11 @@ void OS_X11::update_real_mouse_position() {
+ }
+ 
+ OS_X11::OS_X11() {
++
++#ifdef SNDIO_ENABLED
++	AudioDriverManager::add_driver(&driver_sndio);
++#endif
++
+ #ifdef PULSEAUDIO_ENABLED
+ 	AudioDriverManager::add_driver(&driver_pulseaudio);
+ #endif

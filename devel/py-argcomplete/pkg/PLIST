@@ -1,0 +1,29 @@
+@pkgpath devel/py-argcomplete
+@conflict py-argcomplete-<1.9.3p2
+bin/activate-global-python-argcomplete
+bin/python-argcomplete-check-easy-install-script
+bin/python-argcomplete-tcsh
+bin/register-python-argcomplete
+lib/python${MODPY_VERSION}/site-packages/argcomplete/
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/not-zip-safe
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/requires.txt
+lib/python${MODPY_VERSION}/site-packages/argcomplete-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+lib/python${MODPY_VERSION}/site-packages/argcomplete/__init__.py
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}_check_module.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}compat.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}completers.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}my_argparse.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/${MODPY_PYCACHE}my_shlex.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/argcomplete/_check_module.py
+lib/python${MODPY_VERSION}/site-packages/argcomplete/bash_completion.d/
+lib/python${MODPY_VERSION}/site-packages/argcomplete/bash_completion.d/python-argcomplete.sh
+lib/python${MODPY_VERSION}/site-packages/argcomplete/compat.py
+lib/python${MODPY_VERSION}/site-packages/argcomplete/completers.py
+lib/python${MODPY_VERSION}/site-packages/argcomplete/my_argparse.py
+lib/python${MODPY_VERSION}/site-packages/argcomplete/my_shlex.py

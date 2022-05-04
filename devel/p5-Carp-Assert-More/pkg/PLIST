@@ -1,0 +1,3 @@
+${P5SITE}/Carp/Assert/
+${P5SITE}/Carp/Assert/More.pm
+@man man/man3p/Carp::Assert::More.3p

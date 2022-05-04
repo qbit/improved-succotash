@@ -1,0 +1,2 @@
+@bin lib/ocaml/menhirLib/menhirLib.cmxs
+@bin lib/ocaml/menhirSdk/menhirSdk.cmxs

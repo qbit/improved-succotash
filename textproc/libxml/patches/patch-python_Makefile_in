@@ -1,0 +1,12 @@
+Index: python/Makefile.in
+--- python/Makefile.in.orig
++++ python/Makefile.in
+@@ -911,7 +911,7 @@ info: info-recursive
+ 
+ info-am:
+ 
+-install-data-am: install-dist_docsDATA install-dist_pythonDATA \
++install-data-am: install-dist_pythonDATA \
+ 	install-pythonLTLIBRARIES
+ 
+ install-dvi: install-dvi-recursive

@@ -1,0 +1,17 @@
+Index: remotebox
+--- remotebox.orig
++++ remotebox
+@@ -7,11 +7,11 @@ use FindBin qw($Bin);
+ use POSIX qw(ceil);
+ use MIME::Base64;
+ # *** PACKAGERS MAY WISH TO PATCH THIS LOCATION ***
+-use lib "$Bin/share/remotebox";
++use lib "${PREFIX}/share/remotebox";
+ # *************************************************
+ use vboxService qw($endpoint $fault :all);
+ # *** PACKAGERS MAY WISH TO PATCH THIS LOCATION ***
+-our $sharedir = "$Bin/share/remotebox";
++our $sharedir = "${PREFIX}/share/remotebox";
+ # *************************************************
+ 
+ require 'vboxserializers.pl';

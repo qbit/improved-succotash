@@ -1,0 +1,25 @@
+--- Makefile.orig	Thu Oct 15 06:35:06 2020
++++ Makefile	Fri Oct 16 08:49:22 2020
+@@ -24,17 +24,17 @@
+ # for setting CFLAGS relevant to your make, eg
+ #   % make COPTS="-DDO_HTPASSWD"
+ 
+-COPTS+=	-DDO_HTPASSWD
++COPTS+=	-DDO_HTPASSWD -DNO_LUA_SUPPORT -DNO_BLOCKLIST_SUPPORT
+ PROG=	bozohttpd
+-LINKS=	${BINDIR}/bozohttpd ${BINDIR}/httpd
++#LINKS=	${BINDIR}/bozohttpd ${BINDIR}/httpd
+ MAN=	bozohttpd.8
+-MLINKS+=bozohttpd.8 httpd.8
++#MLINKS+=bozohttpd.8 httpd.8
+ SRCS=	bozohttpd.c ssl-bozo.c auth-bozo.c cgi-bozo.c daemon-bozo.c \
+ 	tilde-luzah-bozo.c dir-index-bozo.c content-bozo.c lua-bozo.c
+ SRCS+=	main.c
+ 
+-LDADD=	-lblocklist -lcrypt -llua -lm
+-DPADD=	${LIBBLOCKLIST} ${LIBCRYPT} ${LIBLUA} ${LIBM}
++LDADD=	-lm
++DPADD=	${LIBM}
+ 
+ WARNS?=	4
+ 

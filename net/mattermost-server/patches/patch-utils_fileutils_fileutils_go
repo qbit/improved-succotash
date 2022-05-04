@@ -1,0 +1,15 @@
+Index: utils/fileutils/fileutils.go
+--- utils/fileutils/fileutils.go.orig
++++ utils/fileutils/fileutils.go
+@@ -10,10 +10,7 @@ import (
+ 
+ var (
+ 	commonBaseSearchPaths = []string{
+-		".",
+-		"..",
+-		"../..",
+-		"../../..",
++		"${PREFIX}/share/mattermost",
+ 	}
+ )
+ 

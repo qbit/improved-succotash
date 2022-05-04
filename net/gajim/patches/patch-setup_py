@@ -1,0 +1,19 @@
+Use correct location and do not compress man pages.
+
+Index: setup.py
+--- setup.py.orig
++++ setup.py
+@@ -109,11 +109,11 @@ def build_man(build_cmd):
+ def install_man(install_cmd):
+     data_files = install_cmd.distribution.data_files
+     man_dir = build_dir / 'man'
+-    target = 'share/man/man1'
++    target = 'man/man1'
+ 
+     for man in MAN_FILES:
+         man_file_gz = str(man_dir / (man + '.gz'))
+-        data_files.append((target, [man_file_gz]))
++        data_files.append((target, [os.path.join('data', man)]))
+ 
+ 
+ def build_intl(build_cmd):

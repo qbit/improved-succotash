@@ -1,0 +1,11 @@
+Index: rocs/impl/unx/uthread.c
+--- rocs/impl/unx/uthread.c.orig
++++ rocs/impl/unx/uthread.c
+@@ -26,6 +26,7 @@
+ #include <stddef.h>
+ #include <signal.h>
+ #include <errno.h>
++#include <unistd.h>
+ 
+ #include <pthread.h>
+ #include <sched.h>

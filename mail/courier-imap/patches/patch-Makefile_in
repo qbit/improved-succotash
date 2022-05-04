@@ -1,0 +1,16 @@
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -417,10 +417,10 @@ CLEANFILES = $(databin_SCRIPTS) $(man_MANS) $(sysconf_
+ databindir = $(datadir)
+ databin_SCRIPTS = mkimapdcert mkpop3dcert mkdhparams
+ binPROGRAMS = imapd pop3d maildirmake maildiracl deliverquota maildirkw \
+-	makeimapaccess makedat
++	makeimapaccess
+ 
+ sbinPROGRAMS = imaplogin pop3login
+-libexecPROGRAMS = makedatprog couriertcpd
++libexecPROGRAMS = makedat makedatprog couriertcpd
+ bin_PROGRAMS = @binPROGRAMS_exec@
+ sbin_PROGRAMS = @sbinPROGRAMS_exec@
+ libexec_PROGRAMS = @libexecPROGRAMS_exec@

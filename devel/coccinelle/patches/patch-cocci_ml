@@ -1,0 +1,32 @@
+Index: cocci.ml
+--- cocci.ml.orig
++++ cocci.ml
+@@ -249,8 +249,8 @@ let show_or_not_diff2 cfile outfile =
+ 
+       let line =
+ 	match !Flag_parsing_c.diff_lines with
+-	| None ->   "diff -u -p " ^ cfile ^ " " ^ outfile
+-	| Some n -> "diff -U "^n^" -p "^cfile^" "^outfile in
++	| None ->   "gdiff -u -p " ^ cfile ^ " " ^ outfile
++	| Some n -> "gdiff -U "^n^" -p "^cfile^" "^outfile in
+       let res = Common.cmd_to_list line in
+       (match res with
+ 	[] -> ()
+@@ -528,7 +528,7 @@ let worth_trying2 cfiles (tokens,_,query,_) =
+ 
+       ) in
+       let com =
+-	Printf.sprintf "egrep -q '(%s)' %s"
++	Printf.sprintf "gegrep -q '(%s)' %s"
+ 	  (String.concat "|" tokens) (String.concat " " cfiles) in
+       (match Sys.command com with
+       | 0 (* success *) -> true
+@@ -2222,7 +2222,7 @@ let check_duplicate_modif2 xs =
+               match res2 with
+               | None -> false
+               | Some res2 ->
+-                  let diff = Common.cmd_to_list ("diff -u -b -B "^res^" "^res2)
++                  let diff = Common.cmd_to_list ("gdiff -u -b -B "^res^" "^res2)
+                   in
+                   diff = []
+             ) xs) then begin

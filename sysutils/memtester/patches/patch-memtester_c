@@ -1,0 +1,11 @@
+--- memtester.c.orig	Sat Jun  9 23:45:22 2012
++++ memtester.c	Fri Aug 26 23:32:43 2016
+@@ -342,7 +342,7 @@ int main(int argc, char **argv) {
+                         wantbytes = wantbytes_orig;
+                         break;
+                     default:
+-                        printf("failed for unknown reason.\n");
++                        printf("mlock: %s\n", strerror(errno));
+                         do_mlock = 0;
+                         done_mem = 1;
+                 }

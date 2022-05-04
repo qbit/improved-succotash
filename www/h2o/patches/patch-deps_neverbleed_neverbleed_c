@@ -1,0 +1,15 @@
+Fix build with opaque RSA{,_METHOD} in LibreSSL 3.5. The relevant OpenSSL API
+has been available since LibreSSL 2.9. ECDSA support is thus also available.
+
+Index: deps/neverbleed/neverbleed.c
+--- deps/neverbleed/neverbleed.c.orig
++++ deps/neverbleed/neverbleed.c
+@@ -45,7 +45,7 @@
+ #endif
+ #include "neverbleed.h"
+ 
+-#if (!defined(LIBRESSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x1010000fL)
++#if ((!defined(LIBRESSL_VERSION_NUMBER) || LIBRESSL_VERSION_NUMBER >= 0x2090000fL) && OPENSSL_VERSION_NUMBER >= 0x1010000fL)
+ #define OPENSSL_1_1_API 1
+ #else
+ #define OPENSSL_1_1_API 0

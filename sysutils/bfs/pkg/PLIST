@@ -1,0 +1,5 @@
+@bin bin/bfs
+@man man/man1/bfs.1
+share/bash-completion/
+share/bash-completion/completions/
+share/bash-completion/completions/bfs

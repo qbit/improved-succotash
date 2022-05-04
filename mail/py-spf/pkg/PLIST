@@ -1,0 +1,5 @@
+bin/spfquery.py
+bin/type99.py
+lib/python${MODPY_VERSION}/site-packages/pyspf-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info
+lib/python${MODPY_VERSION}/site-packages/spf.py
+lib/python${MODPY_VERSION}/site-packages/spf.pyc

@@ -1,0 +1,36 @@
+Don't hardcode optimizations, install to the correct locations.
+Disable warnings; clang is very chatty.
+Put in obstack code.
+Convert to bsd make
+
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -1,20 +1,16 @@
+-ifneq ($(srcdir),)
+-VPATH = $(srcdir)
+-else
+-srcdir=$(shell pwd)
+-endif
+-CFLAGS = -O2 -g
+-DWZ_VERSION := $(shell cat $(srcdir)/VERSION)
+-override CFLAGS += -Wall -W -D_FILE_OFFSET_BITS=64 \
+-	-DDWZ_VERSION='"$(DWZ_VERSION)"' $(shell cat $(srcdir)/COPYRIGHT_YEARS)
++srcdir = .
++CFLAGS ?= -O2 -g
++DWZ_VERSION != cat $(srcdir)/VERSION
++CFLAGS += -DDWZ_VERSION='"$(DWZ_VERSION)"'
++CFLAGS !+= cat $(srcdir)/COPYRIGHT_YEARS
+ prefix = /usr
+ exec_prefix = $(prefix)
+ bindir = $(exec_prefix)/bin
+ datarootdir = $(prefix)/share
+ mandir = $(datarootdir)/man
+-OBJECTS = dwz.o hashtab.o sha1.o dwarfnames.o
++OBJECTS = dwz.o hashtab.o sha1.o dwarfnames.o obstack.o
+ dwz: $(OBJECTS)
+-	$(CC) $(LDFLAGS) -o $@ $^ -lelf
++	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) -lelf
+ install: dwz
+ 	install -D dwz $(DESTDIR)$(bindir)/dwz
+ 	install -D -m 644 $(srcdir)/dwz.1 $(DESTDIR)$(mandir)/man1/dwz.1

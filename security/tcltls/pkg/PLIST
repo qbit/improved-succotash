@@ -1,0 +1,6 @@
+lib/tcl/tls/
+lib/tcl/tls/libtls${VER}.so
+lib/tcl/tls/pkgIndex.tcl
+lib/tcl/tls/tls.tcl
+share/doc/tcltls/
+share/doc/tcltls/tls.htm

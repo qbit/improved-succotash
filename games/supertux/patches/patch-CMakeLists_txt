@@ -1,0 +1,33 @@
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -56,7 +56,7 @@ include(ExternalProject)
+ include(CheckCXXCompilerFlag)
+ 
+ ## For autopackage
+-set(APPDATADIR "${CMAKE_INSTALL_PREFIX}/share/games/supertux2")
++set(APPDATADIR "${CMAKE_INSTALL_PREFIX}/share/supertux2")
+ 
+ set(BUILD_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/data")
+ set(BUILD_CONFIG_DATA_DIR "${CMAKE_BINARY_DIR}/data")
+@@ -351,7 +351,8 @@ if(NOT USE_SYSTEM_PHYSFS)
+     -DLIB_SUFFIX=${LIB_SUFFIX}
+     -DPHYSFS_BUILD_SHARED=${PHYSFS_BUILD_SHARED}
+     -DPHYSFS_BUILD_STATIC=${PHYSFS_BUILD_STATIC}
+-    -DPHYSFS_BUILD_TEST=FALSE)
++    -DPHYSFS_BUILD_TEST=FALSE
++    BUILD_BYPRODUCTS "physfs/lib/libphysfs.a")
+ 
+   if(WIN32)
+     add_library(physfs_lib SHARED IMPORTED)
+@@ -1091,8 +1092,8 @@ else(WIN32 AND NOT UNIX)
+ 
+   else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND DISABLE_CPACK_BUNDLING)
+ 
+-    set(INSTALL_SUBDIR_BIN "games" CACHE STRING "Installation subdir for binaries")
+-    set(INSTALL_SUBDIR_SHARE "share/games/supertux2" CACHE STRING "Installation subdir for data")
++    set(INSTALL_SUBDIR_BIN "bin" CACHE STRING "Installation subdir for binaries")
++    set(INSTALL_SUBDIR_SHARE "share/supertux2" CACHE STRING "Installation subdir for data")
+     set(INSTALL_SUBDIR_DOC "share/doc/supertux2" CACHE STRING "Installation subdir for docs")
+ 
+     if(UBUNTU_TOUCH)

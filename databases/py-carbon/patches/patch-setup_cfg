@@ -1,0 +1,12 @@
+Index: setup.cfg
+--- setup.cfg.orig
++++ setup.cfg
+@@ -4,6 +4,6 @@ requires = python-twisted
+ post-install = distro/redhat/misc/postinstall
+ 
+ [install]
+-prefix = /opt/graphite
+-install-lib = %(prefix)s/lib
++prefix = ${PREFIX}
++install-lib = ${MODPY_SITEPKG}
+ 

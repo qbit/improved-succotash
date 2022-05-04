@@ -1,0 +1,3 @@
+%%dynlink%%
+@bin lib/coccinelle/spgen/spgen.opt
+lib/coccinelle/ocaml/yes_prepare_ocamlcocci.cmi

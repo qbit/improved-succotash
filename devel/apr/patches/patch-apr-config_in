@@ -1,0 +1,16 @@
+Index: apr-config.in
+--- apr-config.in.orig
++++ apr-config.in
+@@ -223,11 +223,7 @@ while test $# -gt 0; do
+     exit 0
+     ;;
+     --apr-libtool)
+-    if test "$location" = "installed"; then
+-        echo "${installbuilddir}/libtool"
+-    else
+-        echo "$APR_BUILD_DIR/libtool"
+-    fi
++    echo "${LIBTOOL}"
+     exit 0
+     ;;
+     --help)

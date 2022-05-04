@@ -1,0 +1,14 @@
+Index: arp-scan.c
+--- arp-scan.c.orig
++++ arp-scan.c
+@@ -131,6 +131,10 @@ main(int argc, char *argv[]) {
+  *      Process options.
+  */
+    process_options(argc, argv);
++   if (getuid() != 0) {
++      fprintf(stderr, "ERROR: arp-scan must be started with root privileges.\n");
++      exit(1);
++   }
+ /*
+  *      Get program start time for statistics displayed on completion.
+  */

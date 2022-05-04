@@ -1,0 +1,7 @@
+@bin bin/scrot
+@man man/man1/scrot.1
+share/doc/scrot/
+share/doc/scrot/AUTHORS
+share/doc/scrot/ChangeLog
+share/doc/scrot/README.md
+share/doc/scrot/scrot.png

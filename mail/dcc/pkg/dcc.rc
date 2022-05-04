@@ -1,0 +1,18 @@
+#!/bin/ksh
+
+daemon="${TRUEPREFIX}/libexec/dcc/rcDCC"
+
+. /etc/rc.d/rc.subr
+
+pexp="${TRUEPREFIX}/libexec/dcc/(dccifd|dccd|dccm).*"
+rc_reload=NO
+
+rc_start() {
+	$daemon start
+}
+
+rc_stop() {
+	$daemon stop
+}
+
+rc_cmd $1

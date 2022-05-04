@@ -1,0 +1,12 @@
+Index: src/3rdparty/chromium/net/socket/udp_socket_posix.cc
+--- src/3rdparty/chromium/net/socket/udp_socket_posix.cc.orig
++++ src/3rdparty/chromium/net/socket/udp_socket_posix.cc
+@@ -653,7 +653,7 @@ int UDPSocketPosix::SetDoNotFragment() {
+ }
+ 
+ void UDPSocketPosix::SetMsgConfirm(bool confirm) {
+-#if !defined(OS_MACOSX) && !defined(OS_IOS)
++#if !defined(OS_MACOSX) && !defined(OS_IOS) && !defined(OS_BSD)
+   if (confirm) {
+     sendto_flags_ |= MSG_CONFIRM;
+   } else {

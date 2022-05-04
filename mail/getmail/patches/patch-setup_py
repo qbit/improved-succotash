@@ -1,0 +1,25 @@
+Index: setup.py
+--- setup.py.orig
++++ setup.py
+@@ -39,12 +39,11 @@ GETMAILDOCDIR = os.path.join(
+     datadir or prefix,
+     'share',
+     'doc',
+-    'getmail-%s' % __version__
++    'getmail'
+ )
+ 
+ GETMAILMANDIR = os.path.join(
+     datadir or prefix,
+-    'share',
+     'man',
+     'man1'
+ )
+@@ -101,7 +100,6 @@ setup(
+     data_files=[
+         (GETMAILDOCDIR, [
+             './README',
+-            './getmail.spec',
+             'docs/BUGS',
+             'docs/COPYING',
+             'docs/CHANGELOG',

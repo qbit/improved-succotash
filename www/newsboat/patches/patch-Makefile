@@ -1,0 +1,33 @@
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -49,9 +49,9 @@ CXX_FOR_BUILD?=$(CXX)
+ # compiler and linker flags
+ DEFINES=-DLOCALEDIR='"$(localedir)"'
+ 
+-WARNFLAGS=-Werror -Wall -Wextra -Wunreachable-code
++WARNFLAGS=-Wall -Wextra -Wunreachable-code
+ INCLUDES=-Iinclude -Istfl -Ifilter -I. -Irss -I$(relative_cargo_target_dir)/cxxbridge/
+-BARE_CXXFLAGS=-std=c++11 -O2 -ggdb $(INCLUDES)
++BARE_CXXFLAGS=-std=c++11 $(INCLUDES)
+ LDFLAGS+=-L.
+ 
+ # Constants
+@@ -83,7 +83,7 @@ FILTERLIB_OUTPUT=libfilter.a
+ NEWSBOAT=newsboat
+ NEWSBOAT_SOURCES:=$(shell cat mk/newsboat.deps)
+ NEWSBOAT_OBJS:=$(patsubst %.cpp,%.o,$(NEWSBOAT_SOURCES))
+-NEWSBOAT_LIBS=-lboat -lnewsboat -lfilter -lpthread -lrsspp -ldl
++NEWSBOAT_LIBS=-lboat -lnewsboat -lfilter -lpthread -lrsspp -lcurses
+ 
+ RSSPPLIB_SOURCES=$(sort $(wildcard rss/*.cpp))
+ RSSPPLIB_OBJS=$(patsubst rss/%.cpp,rss/%.o,$(RSSPPLIB_SOURCES))
+@@ -109,7 +109,7 @@ endif
+ PODBOAT=podboat
+ PODBOAT_SOURCES:=$(shell cat mk/podboat.deps)
+ PODBOAT_OBJS:=$(patsubst %.cpp,%.o,$(PODBOAT_SOURCES))
+-PODBOAT_LIBS=-lboat -lnewsboat -lfilter -lpthread -ldl
++PODBOAT_LIBS=-lboat -lnewsboat -lfilter -lpthread -lcurses
+ 
+ ifeq (, $(filter Linux GNU GNU/%, $(shell uname -s)))
+ NEWSBOAT_LIBS+=-liconv -lintl

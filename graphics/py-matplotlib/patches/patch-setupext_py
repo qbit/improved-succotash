@@ -1,0 +1,11 @@
+Index: setupext.py
+--- setupext.py.orig
++++ setupext.py
+@@ -807,6 +807,7 @@ class BackendTkAgg(OptionalBackendPackage):
+             ]
+ 
+         ext = Extension('matplotlib.backends._tkagg', sources)
++        ext.include_dirs.extend(['${X11BASE}/include'])
+         self.add_flags(ext)
+         add_numpy_flags(ext)
+         LibAgg().add_flags(ext, add_sources=False)

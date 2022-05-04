@@ -1,0 +1,15 @@
+don't add -pie, that's automatic on OpenBSD when needed,
+and this interferes badly with lld
+
+Index: binr/rules.mk
+--- binr/rules.mk.orig
++++ binr/rules.mk
+@@ -3,7 +3,7 @@ include ../../libr/config.mk
+ include ../../shlr/zip/deps.mk
+ 
+ ifeq (,$(findstring tcc,${CC}))
+-CFLAGS+=-pie
++#CFLAGS+=-pie
+ endif
+ CFLAGS+=-I$(LTOP)/include
+ 

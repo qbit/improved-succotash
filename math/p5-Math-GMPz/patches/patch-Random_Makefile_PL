@@ -1,0 +1,13 @@
+Index: Random/Makefile.PL
+--- Random/Makefile.PL.orig
++++ Random/Makefile.PL
+@@ -10,7 +10,8 @@ my %options = %{
+     '../typemap'
+   ],
+   'NAME' => 'Math::GMPz::Random',
+-  'LIBS' => $LIBS,
++   INC  => "$ENV{CPPFLAGS}",
++   LIBS => ["$ENV{LDFLAGS} -lgmp"],
+   'INC' => $INC,
+   'VERSION_FROM' => 'Random.pm'
+ }

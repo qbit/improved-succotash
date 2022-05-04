@@ -1,0 +1,19 @@
+--- sic.c.orig	Sun Jun 16 08:03:32 2013
++++ sic.c	Sat Sep 10 12:08:39 2016
+@@ -5,6 +5,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <sys/select.h> /* fd_set */
+ #include <time.h>
+ #include <unistd.h>
+ 
+@@ -173,6 +174,8 @@ main(int argc, char *argv[]) {
+ 	fflush(srv);
+ 	setbuf(stdout, NULL);
+ 	setbuf(srv, NULL);
++	if (pledge("stdio", NULL) == -1)
++		eprint("error: pledge:");
+ 	for(;;) { /* main loop */
+ 		FD_ZERO(&rd);
+ 		FD_SET(0, &rd);

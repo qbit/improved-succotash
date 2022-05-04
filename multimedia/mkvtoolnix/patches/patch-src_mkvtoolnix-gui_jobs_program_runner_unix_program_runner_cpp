@@ -1,0 +1,72 @@
+Index: src/mkvtoolnix-gui/jobs/program_runner/unix_program_runner.cpp
+--- src/mkvtoolnix-gui/jobs/program_runner/unix_program_runner.cpp.orig
++++ src/mkvtoolnix-gui/jobs/program_runner/unix_program_runner.cpp
+@@ -1,26 +1,26 @@
+ #include "common/common_pch.h"
+ 
+-#if defined(SYS_LINUX)
++#if defined(SYS_LINUX) || defined(SYS_BSD)
+ 
+ #include <QDebug>
+ #include <QProcess>
+ 
+ #include "common/list_utils.h"
+ #include "common/qt.h"
+-#include "mkvtoolnix-gui/jobs/program_runner/linux_program_runner.h"
++#include "mkvtoolnix-gui/jobs/program_runner/unix_program_runner.h"
+ 
+ namespace mtx::gui::Jobs {
+ 
+-LinuxProgramRunner::LinuxProgramRunner()
++UnixProgramRunner::UnixProgramRunner()
+   : ProgramRunner{}
+ {
+ }
+ 
+-LinuxProgramRunner::~LinuxProgramRunner() {
++UnixProgramRunner::~UnixProgramRunner() {
+ }
+ 
+ bool
+-LinuxProgramRunner::isRunProgramTypeSupported(Util::Settings::RunProgramType type) {
++UnixProgramRunner::isRunProgramTypeSupported(Util::Settings::RunProgramType type) {
+   if (ProgramRunner::isRunProgramTypeSupported(type))
+     return true;
+ 
+@@ -28,8 +28,8 @@ LinuxProgramRunner::isRunProgramTypeSupported(Util::Se
+ }
+ 
+ void
+-LinuxProgramRunner::systemctlAction(QString const &action) {
+-  qDebug() << Q("LinuxProgramRunner::systemctlAction: about to execute 'systemctl %1'").arg(action);
++UnixProgramRunner::systemctlAction(QString const &action) {
++  qDebug() << Q("UnixProgramRunner::systemctlAction: about to execute 'systemctl %1'").arg(action);
+ 
+   auto args   = QStringList{} << action;
+   auto result = QProcess::execute(Q("systemctl"), args);
+@@ -37,21 +37,21 @@ LinuxProgramRunner::systemctlAction(QString const &act
+   if (result == 0)
+     return;
+ 
+-  qDebug() << Q("LinuxProgramRunner::systemctlAction: 'systemctl %1' failed: %2").arg(action).arg(result);
++  qDebug() << Q("UnixProgramRunner::systemctlAction: 'systemctl %1' failed: %2").arg(action).arg(result);
+ }
+ 
+ void
+-LinuxProgramRunner::shutDownComputer(Util::Settings::RunProgramConfig &) {
++UnixProgramRunner::shutDownComputer(Util::Settings::RunProgramConfig &) {
+   systemctlAction(Q("poweroff"));
+ }
+ 
+ void
+-LinuxProgramRunner::hibernateComputer(Util::Settings::RunProgramConfig &) {
++UnixProgramRunner::hibernateComputer(Util::Settings::RunProgramConfig &) {
+   systemctlAction(Q("hibernate"));
+ }
+ 
+ void
+-LinuxProgramRunner::sleepComputer(Util::Settings::RunProgramConfig &) {
++UnixProgramRunner::sleepComputer(Util::Settings::RunProgramConfig &) {
+   systemctlAction(Q("suspend"));
+ }
+ 

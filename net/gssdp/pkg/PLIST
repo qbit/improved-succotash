@@ -1,0 +1,16 @@
+@conflict gupnp-vala-<=0.10.3p0
+@bin bin/gssdp-device-sniffer
+include/gssdp-1.2/
+include/gssdp-1.2/libgssdp/
+include/gssdp-1.2/libgssdp/gssdp-client.h
+include/gssdp-1.2/libgssdp/gssdp-enums.h
+include/gssdp-1.2/libgssdp/gssdp-error.h
+include/gssdp-1.2/libgssdp/gssdp-resource-browser.h
+include/gssdp-1.2/libgssdp/gssdp-resource-group.h
+include/gssdp-1.2/libgssdp/gssdp.h
+lib/girepository-1.0/GSSDP-1.2.typelib
+@lib lib/libgssdp-1.2.so.${LIBgssdp-1.2_VERSION}
+lib/pkgconfig/gssdp-1.2.pc
+share/gir-1.0/GSSDP-1.2.gir
+share/vala/vapi/gssdp-1.2.deps
+share/vala/vapi/gssdp-1.2.vapi

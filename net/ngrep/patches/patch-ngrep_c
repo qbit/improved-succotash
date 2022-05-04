@@ -1,0 +1,11 @@
+Index: ngrep.c
+--- ngrep.c.orig
++++ ngrep.c
+@@ -16,6 +16,7 @@
+ #include <arpa/inet.h>
+ #include <sys/tty.h>
+ #include <pwd.h>
++#include <stdint.h>
+ #endif
+ 
+ #if defined(OSF1)

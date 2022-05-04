@@ -1,0 +1,10 @@
+include/libgepub-0.6/
+include/libgepub-0.6/gepub-archive.h
+include/libgepub-0.6/gepub-doc.h
+include/libgepub-0.6/gepub-text-chunk.h
+include/libgepub-0.6/gepub-widget.h
+include/libgepub-0.6/gepub.h
+lib/girepository-1.0/Gepub-0.6.typelib
+@lib lib/libgepub-0.6.so.${LIBgepub-0.6_VERSION}
+lib/pkgconfig/libgepub-0.6.pc
+share/gir-1.0/Gepub-0.6.gir

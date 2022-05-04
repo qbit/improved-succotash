@@ -1,0 +1,12 @@
+Index: coregrind/m_debuginfo/readelf.c
+--- coregrind/m_debuginfo/readelf.c.orig
++++ coregrind/m_debuginfo/readelf.c
+@@ -57,7 +57,7 @@
+ #if !defined(VGO_openbsd)
+ #include <elf.h>
+ #else
+-#include <libelf/gelf.h>
++#include <gelf.h>
+ #endif
+ /* --- !!! --- EXTERNAL HEADERS end --- !!! --- */
+ 

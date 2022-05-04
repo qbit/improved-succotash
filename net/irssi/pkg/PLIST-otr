@@ -1,0 +1,4 @@
+@conflict irssi-<1.2.1
+@pkgpath net/irssi-otr
+lib/irssi/modules/libotr_core.la
+@so lib/irssi/modules/libotr_core.so

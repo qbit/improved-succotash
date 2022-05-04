@@ -1,0 +1,13 @@
+net/uucp uses login _uucp
+
+Index: cf/m4/proto.m4
+--- cf/m4/proto.m4.orig
++++ cf/m4/proto.m4
+@@ -746,6 +746,7 @@ ifdef(`_USE_CT_FILE_', `', `#')Ft`'ifdef(`confCT_FILE'
+ Troot
+ Tdaemon
+ ifdef(`_NO_UUCP_', `dnl', `Tuucp')
++ifdef(`_NO_UUCP_', `dnl', `T_uucp')
+ ifdef(`confTRUSTED_USERS', `T`'confTRUSTED_USERS', `dnl')
+ 
+ #########################

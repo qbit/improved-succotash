@@ -1,0 +1,12 @@
+Index: support/rrsync
+--- support/rrsync.orig
++++ support/rrsync
+@@ -11,7 +11,7 @@ use File::Glob ':glob';
+ 
+ # You may configure these values to your liking.  See also the section
+ # of options if you want to disable any options that rsync accepts.
+-use constant RSYNC => '/usr/bin/rsync';
++use constant RSYNC => '${PREFIX}/bin/rsync';
+ use constant LOGFILE => 'rrsync.log';
+ 
+ my $Usage = <<EOM;

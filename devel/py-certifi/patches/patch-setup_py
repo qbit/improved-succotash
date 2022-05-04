@@ -1,0 +1,14 @@
+Index: setup.py
+--- setup.py.orig
++++ setup.py
+@@ -42,10 +42,6 @@ setup(
+     packages=[
+         'certifi',
+     ],
+-    package_dir={'certifi': 'certifi'},
+-    package_data={'certifi': ['*.pem']},
+-    # data_files=[('certifi', ['certifi/cacert.pem'])],
+-    include_package_data=True,
+     zip_safe=False,
+     license='MPL-2.0',
+     classifiers=[

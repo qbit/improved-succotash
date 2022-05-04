@@ -1,0 +1,37 @@
+Index: lib/Rose/DB/Registry/Entry.pm
+--- lib/Rose/DB/Registry/Entry.pm.orig
++++ lib/Rose/DB/Registry/Entry.pm
+@@ -2,7 +2,7 @@ package Rose::DB::Registry::Entry;
+ 
+ use strict;
+ 
+-use Clone::PP();
++use Clone();
+ 
+ use Rose::Object;
+ our @ISA = qw(Rose::Object);
+@@ -190,7 +190,7 @@ sub dump
+   {
+     my $value = $self->$attr();
+     next  unless(defined $value);
+-    $dump{$attr} = Clone::PP::clone($value);
++    $dump{$attr} = Clone::clone($value);
+   }
+ 
+ 
+@@ -200,13 +200,13 @@ sub dump
+   {
+     my $value = $self->{$attr};
+     next  unless(defined $value);
+-    $dump{$attr} = Clone::PP::clone($value);
++    $dump{$attr} = Clone::clone($value);
+   }
+ 
+   return \%dump;
+ }
+ 
+-sub clone { Clone::PP::clone($_[0]) }
++sub clone { Clone::clone($_[0]) }
+ 
+ 1;
+ 

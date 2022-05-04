@@ -1,0 +1,40 @@
+Index: src/Makefile
+--- src/Makefile.orig
++++ src/Makefile
+@@ -50,7 +50,7 @@ CUSTOM = -custom
+ #MLLINK += -cclib -lcamlrund
+ MLBYTEFLAGS = -g -dtypes
+ else
+-CFLAGS = -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS $(GTKCFLAGS)
++CFLAGS += -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS $(GTKCFLAGS)
+ ifneq ($(TOOLCHAIN),msvc)
+ CFLAGS += -O
+ endif
+@@ -65,7 +65,7 @@ endif
+ THLINK = unix.cma threads.cma
+ 
+ ifdef USE_CC
+-CCOMPILER = $(CC) -c -I"$(LIBDIR)" $(CFLAGS)
++CCOMPILER = $(CC) -c -I"$(LIBDIR)" $(CFLAGS) -fPIC
+ else
+ CCOMPILER = $(CAMLC) -c -ccopt '$(CFLAGS)' -verbose
+ endif
+@@ -451,12 +451,14 @@ findlib-install:
+ 	  cp lablgladecc$(XE) "$(BINDIR)/lablgladecc2$(XE)"; \
+ 	fi
+ 	cp gdk_pixbuf_mlsource$(XE) "$(BINDIR)"
+-	$(RANLIB) $(CLIBS:%="$(FLINSTALLDIR)"/%)
++	for _l in $(CLIBS:%="$(FLINSTALLDIR)"/%); do $(RANLIB) $${_l}; done
+ 	@if test -f lablgtk.cmxa; then \
+ 	  echo "Execute $(RANLIB) in $(FLINSTALLDIR)"; \
+-	  $(RANLIB) $(MLLIBS:%.cma="$(FLINSTALLDIR)"/%$(XA)) \
+-		    $(EXTRA_MLLIBS:%.cma="$(FLINSTALLDIR)"/%$(XA)) ; \
+-	 fi
++	  for _l in $(MLLIBS:%.cma="$(FLINSTALLDIR)"/%$(XA)) \
++	  	    $(EXTRA_MLLIBS:%.cma="$(FLINSTALLDIR)"/%$(XA)); do \
++		$(RANLIB) $${_l}; \
++	  done \
++	fi
+ 
+ findlib-uninstall:
+ 	$(OCAMLFIND) remove lablgtk2

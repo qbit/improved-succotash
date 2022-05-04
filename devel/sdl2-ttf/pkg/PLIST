@@ -1,0 +1,5 @@
+include/SDL2/SDL_ttf.h
+@static-lib lib/libSDL2_ttf.a
+lib/libSDL2_ttf.la
+@lib lib/libSDL2_ttf.so.${LIBSDL2_ttf_VERSION}
+lib/pkgconfig/SDL2_ttf.pc

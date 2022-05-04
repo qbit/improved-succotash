@@ -1,0 +1,2 @@
+@bin bin/halibut
+@man man/man1/halibut.1

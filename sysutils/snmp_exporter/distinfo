@@ -1,0 +1,4 @@
+SHA256 (snmp_exporter-0.20.0.tar.gz) = QyZ0n7NrgpykPp1g/An0O2J4jzU8SRqjNncF1SuW+uk=
+SHA256 (snmp_exporter_mibs+vendor-0.20.0.tar.xz) = 1aC1YeU02723h4j8eN21rQTIQU4SU8aHHiDayknfpx4=
+SIZE (snmp_exporter-0.20.0.tar.gz) = 290899
+SIZE (snmp_exporter_mibs+vendor-0.20.0.tar.xz) = 7455304

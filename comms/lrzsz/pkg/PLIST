@@ -1,0 +1,8 @@
+@bin bin/lrb
+@bin bin/lrx
+@bin bin/lrz
+@bin bin/lsb
+@bin bin/lsx
+@bin bin/lsz
+@man man/man1/lrz.1
+@man man/man1/lsz.1

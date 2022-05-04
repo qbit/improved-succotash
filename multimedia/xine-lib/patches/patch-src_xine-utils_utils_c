@@ -1,0 +1,37 @@
+- Make use of clock_gettime() on OpenBSD. Until we have per-process
+  timers and can enable _POSIX_TIMERS in unistd.h.
+
+- Fix fd lead (error path)
+  ef445262b10938eb7c0373d42fef0f465a3fb479
+
+Index: src/xine-utils/utils.c
+--- src/xine-utils/utils.c.orig
++++ src/xine-utils/utils.c
+@@ -726,7 +726,8 @@ void xine_xprintf(xine_t *xine, int verbose, const cha
+ 
+ int xine_monotonic_clock(struct timeval *tv, struct timezone *tz)
+ {
+-#if _POSIX_TIMERS > 0 && defined(_POSIX_MONOTONIC_CLOCK) && defined(HAVE_POSIX_TIMERS)
++#if _POSIX_TIMERS > 0 && defined(_POSIX_MONOTONIC_CLOCK) && defined(HAVE_POSIX_TIMERS) || \
++    defined(__OpenBSD__)
+   static int xmc_mode = 0;
+ 
+   do {
+@@ -1299,11 +1300,15 @@ xine_fast_text_t *xine_fast_text_load (const char *fil
+   f = fopen (filename, "rb");
+   if (!f)
+     return NULL;
+-  if (fseek (f, 0, SEEK_END))
++  if (fseek (f, 0, SEEK_END)) {
++    fclose(f);
+     return NULL;
++  }
+   filesize = ftell (f);
+-  if (fseek (f, 0, SEEK_SET))
++  if (fseek (f, 0, SEEK_SET)) {
++    fclose(f);
+     return NULL;
++  }
+ 
+   if (filesize > max_size)
+     filesize = max_size;

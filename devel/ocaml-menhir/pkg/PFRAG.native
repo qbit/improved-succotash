@@ -1,0 +1,5 @@
+%%dynlink%%
+lib/ocaml/menhirLib/menhirLib.cmx
+lib/ocaml/menhirLib/menhirLib.o
+lib/ocaml/menhirSdk/menhirSdk.cmx
+lib/ocaml/menhirSdk/menhirSdk.o

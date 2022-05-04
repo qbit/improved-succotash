@@ -1,0 +1,3 @@
+@bin bin/gortr
+@bin bin/rtrdump
+@bin bin/rtrmon

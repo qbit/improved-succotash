@@ -1,0 +1,12 @@
+Index: runtime/syntax/fstab.vim
+--- runtime/syntax/fstab.vim.orig
++++ runtime/syntax/fstab.vim
+@@ -141,7 +141,7 @@ syn match fsOptionsKeywords contained /\<\%(dir\|file\
+ syn match fsOptionsKeywords contained /\<\%(session\|part\)=/ nextgroup=fsOptionsNumber
+ 
+ " Options: ffs
+-syn keyword fsOptionsKeyWords contained noperm softdep
++syn keyword fsOptionsKeyWords contained noperm softdep wxallowed
+ 
+ " Options: hpfs
+ syn match fsOptionsKeywords contained /\<case=/ nextgroup=fsOptionsHpfsCase

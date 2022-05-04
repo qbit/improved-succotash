@@ -1,0 +1,11 @@
++-----------------------------------------------------------------------
+| Running ${PKGSTEM} on OpenBSD
++-----------------------------------------------------------------------
+
+To enable command completion, add this to the shell profile:
+
+* bash
+source ${PREFIX}/google-cloud-sdk/completion.bash.inc
+
+* zsh
+source ${PREFIX}/google-cloud-sdk/completion.zsh.inc
