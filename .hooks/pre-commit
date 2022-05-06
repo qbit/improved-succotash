@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -eu
+
+export HOOKS_DIR=$(realpath $(dirname $0))
+
+# Grabs changes in a specific port and runs various tests
+for portmk in $(git diff --name-only --cached | grep Makefile); do
+	port=$(dirname $portmk)
+	echo "===> Checking $port"
+	(
+		cd $port
+		for check in ${HOOKS_DIR}/port_checks/*; do
+			${check} || exit 1
+		done
+	)
+done
