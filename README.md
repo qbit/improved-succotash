@@ -10,7 +10,7 @@ Documentation for the ports tree: [ports(7)](http://man.openbsd.org/ports),
 
 [dpb(1)](https://man.openbsd.org/dpb), [bulk(8)](https://man.openbsd.org/bulk) for bulk builds.
 
-See also the [OpenBSD Porter's Handbook](http://www.openbsd.org/faq/ports/)
+See also the [OpenBSD Porter's Handbook](http://www.openbsd.org/faq/ports/).
 
 ## Using GitHub for ports development
 
@@ -20,3 +20,6 @@ $ cd ports
 $ git config core.hooksPath .hooks
 # Shut up and hack!
 ```
+
+This will enable a set of pre-commit hooks that do various checks to make sure
+a port is in order.
