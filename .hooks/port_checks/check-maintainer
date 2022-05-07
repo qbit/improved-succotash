@@ -4,7 +4,7 @@ set -eu
 
 MT=$(make show=MAINTAINER)
 if ! grep -q "${MT}" "${HOOKS_DIR}/GH_MAINTAINERS"; then
-	echo "MAINTAINER does not want to work via GitHub."
-	echo "please send this diff to ports@openbsd.org"
+	echo "${MT} does not want to work via GitHub."
+	echo "please send this diff to ports@openbsd.org and cc ${MT}"
 	exit 1
 fi
