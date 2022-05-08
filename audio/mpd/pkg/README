@@ -14,10 +14,10 @@ more details.
 
 If you want to share sndiod(8) access with mpd(1) running as the
 default _mpd user, you may copy .sndio/cookie from your user's home
-directory to /var/spool/mpd/.sndio/cookie.
+directory to $VARBASE/spool/mpd/.sndio/cookie.
 
 If you previously had mpd installed on your system, make sure the home
-directory of the _mpd user is actually /var/spool/mpd, or reset it
+directory of the _mpd user is actually $VARBASE/spool/mpd, or reset it
 with:
 
-# usermod -d /var/spool/mpd _mpd
+# usermod -d $VARBASE/spool/mpd _mpd
