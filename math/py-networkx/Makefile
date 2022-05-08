@@ -1,9 +1,8 @@
 COMMENT =		module for creating and manipulating graphs and networks
 
-MODPY_EGG_VERSION =	2.6.2
+MODPY_EGG_VERSION =	2.8
 DISTNAME =		networkx-${MODPY_EGG_VERSION}
 PKGNAME =		py-${DISTNAME}
-REVISION =		0
 
 CATEGORIES =		math
 
